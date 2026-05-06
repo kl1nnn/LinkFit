@@ -81,6 +81,12 @@ Acesse no navegador: `http://localhost:5173`
 
 ---
 
+## Repositório
+
+[github.com/kl1nnn/LinkFit](https://github.com/kl1nnn/LinkFit)
+
+---
+
 ## Telas do Protótipo
 
 - **Landing Page** — Apresentação da plataforma com CTA para aluno e personal
