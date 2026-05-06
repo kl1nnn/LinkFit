@@ -65,7 +65,7 @@ O **LinkFit** é um protótipo de plataforma SaaS (Software as a Service) que co
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/linkfit.git
+git clone https://github.com/kl1nnn/LinkFit.git
 
 # 2. Entre na pasta do projeto
 cd linkfit
