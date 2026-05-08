@@ -2,7 +2,7 @@ import { COLORS } from "../constants/theme";
 
 const days = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
 const hours = ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00"];
-const booked = { "Seg-07:00": "Hipertrofia", "Qua-07:00": "Hipertrofia", "Sex-08:00": "Forca" };
+const booked = { "Seg-07:00": "Hipertrofia", "Qua-07:00": "Hipertrofia", "Sex-08:00": "Força" };
 
 export default function AlunoAgenda() {
   return (
@@ -18,7 +18,7 @@ export default function AlunoAgenda() {
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
-              <th style={{ padding: "10px 12px", textAlign: "left", color: COLORS.muted, fontSize: 13, fontWeight: 500, width: 70 }}>Horario</th>
+              <th style={{ padding: "10px 12px", textAlign: "left", color: COLORS.muted, fontSize: 13, fontWeight: 500, width: 70 }}>Horário</th>
               {days.map((day) => (
                 <th key={day} style={{ padding: "10px 12px", textAlign: "center", color: COLORS.muted, fontSize: 13, fontWeight: 500 }}>{day}</th>
               ))}

@@ -40,11 +40,11 @@ export default function BuscarPersonal() {
                 <div style={{ fontWeight: 600, fontSize: 16 }}>{trainer.name}</div>
                 <div style={{ color: COLORS.muted, fontSize: 13, marginTop: 2 }}>{trainer.location}</div>
                 <Stars rating={trainer.rating} />
-                <span style={{ color: COLORS.muted, fontSize: 12 }}> ({trainer.reviews} avaliacoes)</span>
+                <span style={{ color: COLORS.muted, fontSize: 12 }}> ({trainer.reviews} avaliações)</span>
               </div>
               <div style={{ textAlign: "right" }}>
                 <div style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: 22, color: "#22c55e" }}>R${trainer.price}</div>
-                <div style={{ color: COLORS.muted, fontSize: 11 }}>/sessao</div>
+                <div style={{ color: COLORS.muted, fontSize: 11 }}>/sessão</div>
               </div>
             </div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>

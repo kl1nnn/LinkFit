@@ -3,16 +3,16 @@ import LogoMark from "../components/LogoMark";
 import { COLORS } from "../constants/theme";
 
 const quickStats = [
-  ["42", "Alunos cadastrados"],
-  ["8", "Personals parceiros"],
-  ["4.7", "Media de avaliacao"],
+  ["38", "Alunos cadastrados"],
+  ["9", "Profissionais parceiros"],
+  ["4,7", "Média de avaliação"],
 ];
 
 const features = [
   { title: "Agenda", desc: "Treinos da semana em um lugar" },
-  { title: "Evolucao", desc: "Peso, medidas e progresso" },
+  { title: "Evolução", desc: "Peso, medidas e progresso" },
   { title: "Chat", desc: "Contato direto com o personal" },
-  { title: "Pagamentos", desc: "Registro simples das sessoes" },
+  { title: "Pagamentos", desc: "Registro simples das sessões" },
 ];
 
 export default function Landing({ onLogin }) {
@@ -31,16 +31,16 @@ export default function Landing({ onLogin }) {
           <div style={{ display: "inline-flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
             <div style={{ width: 3, height: 18, background: COLORS.accent, borderRadius: 2, animation: "cursorBlink 1s step-end infinite" }} />
             <span style={{ fontSize: 13, color: COLORS.muted, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-              Projeto academico UMC
+              Projeto acadêmico UMC
             </span>
           </div>
           <h1 style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: 76, lineHeight: 0.95, letterSpacing: 1, marginBottom: 24 }}>
             LinkFit
             <br />
-            <span style={{ color: COLORS.accent }}>treinos mais proximos</span>
+            <span style={{ color: COLORS.accent }}>treinos mais próximos</span>
           </h1>
           <p style={{ color: COLORS.muted, fontSize: 18, lineHeight: 1.7, marginBottom: 40, maxWidth: 470 }}>
-            Um prototipo para aproximar alunos e personal trainers da regiao, com agenda, acompanhamento fisico e mensagens no mesmo painel.
+            Uma plataforma para conectar alunos e personal trainers da região, com agenda, evolução física e mensagens em um só painel.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <button className="btn-accent" style={{ fontSize: 16, padding: "14px 36px" }} onClick={() => onLogin("aluno")}>
@@ -68,7 +68,7 @@ export default function Landing({ onLogin }) {
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
               <div style={{ flex: 1, marginLeft: 8, background: "#1e1e1e", borderRadius: 4, padding: "3px 10px", fontSize: 11, color: COLORS.muted }}>
-                linkfit.local/dashboard
+                linkfit.app/painel
               </div>
             </div>
             <div style={{ display: "flex", height: 340 }}>
@@ -77,7 +77,7 @@ export default function Landing({ onLogin }) {
                   <LogoMark size={14} />
                   <span style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: 11, letterSpacing: 1 }}>LinkFit</span>
                 </div>
-                {["Inicio", "Buscar", "Agenda", "Evolucao", "Chat"].map((item, i) => (
+                {["Início", "Buscar", "Agenda", "Evolução", "Chat"].map((item, i) => (
                   <div key={item} style={{ padding: "5px 8px", borderRadius: 5, fontSize: 10, background: i === 0 ? `rgba(224,112,64,0.1)` : "transparent", color: i === 0 ? COLORS.accent : COLORS.muted }}>
                     {item}
                   </div>
@@ -94,8 +94,8 @@ export default function Landing({ onLogin }) {
                   ))}
                 </div>
                 <div style={{ background: "#161616", borderRadius: 8, padding: "10px 12px", border: `1px solid ${COLORS.border}` }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, marginBottom: 8, fontFamily: "'Archivo Black', sans-serif" }}>Proximos treinos</div>
-                  {[["Seg 07:00", "Hipertrofia", true], ["Qua 07:00", "Hipertrofia", true], ["Sex 08:00", "Forca", false]].map(([day, type, confirmed]) => (
+                  <div style={{ fontSize: 10, fontWeight: 700, marginBottom: 8, fontFamily: "'Archivo Black', sans-serif" }}>Próximos treinos</div>
+                  {[["Seg 07:00", "Hipertrofia", true], ["Qua 07:00", "Hipertrofia", true], ["Sex 08:00", "Força", false]].map(([day, type, confirmed]) => (
                     <div key={day} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "4px 0", borderBottom: `1px solid ${COLORS.border}` }}>
                       <span style={{ fontSize: 9, color: COLORS.muted }}>{day}</span>
                       <span style={{ fontSize: 9, fontWeight: 600 }}>{type}</span>
@@ -104,8 +104,8 @@ export default function Landing({ onLogin }) {
                   ))}
                 </div>
                 <div style={{ background: "#161616", borderRadius: 8, padding: "10px 12px", border: `1px solid ${COLORS.border}` }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, marginBottom: 8, fontFamily: "'Archivo Black', sans-serif" }}>Evolucao fisica</div>
-                  {[["Peso", 60], ["Gordura", 40], ["Musculo", 72]].map(([l, p]) => (
+                  <div style={{ fontSize: 10, fontWeight: 700, marginBottom: 8, fontFamily: "'Archivo Black', sans-serif" }}>Evolução física</div>
+                  {[["Peso", 60], ["Gordura", 40], ["Músculo", 72]].map(([l, p]) => (
                     <div key={l} style={{ marginBottom: 5 }}>
                       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: COLORS.muted, marginBottom: 2 }}>
                         <span>{l}</span><span style={{ color: COLORS.accent }}>{p}%</span>

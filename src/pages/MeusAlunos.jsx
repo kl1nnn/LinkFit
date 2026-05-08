@@ -22,7 +22,7 @@ export default function MeusAlunos() {
               </div>
               <div style={{ textAlign: "right" }}>
                 <div style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: 24, color: COLORS.accent }}>{student.sessions}</div>
-                <div style={{ fontSize: 11, color: COLORS.muted }}>sessoes</div>
+                <div style={{ fontSize: 11, color: COLORS.muted }}>sessões</div>
               </div>
             </div>
             <div style={{ marginBottom: 10 }}>
@@ -33,7 +33,7 @@ export default function MeusAlunos() {
             </div>
             <div style={{ display: "flex", gap: 8 }}>
               <button className="btn-ghost" style={{ flex: 1, padding: "8px" }}>Ver Treinos</button>
-              <button className="btn-accent" style={{ flex: 1, padding: "8px" }}>Evolucao</button>
+              <button className="btn-accent" style={{ flex: 1, padding: "8px" }}>Evolução</button>
             </div>
           </div>
         ))}

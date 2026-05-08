@@ -2,15 +2,15 @@ import Logo from "./Logo";
 import { COLORS } from "../constants/theme";
 
 const alunoItems = [
-  { id: "dashboard", icon: "•", label: "Inicio" },
+  { id: "dashboard", icon: "●", label: "Início" },
   { id: "buscar", icon: "⌕", label: "Buscar Personal" },
   { id: "agenda", icon: "□", label: "Minha Agenda" },
-  { id: "evolucao", icon: "↗", label: "Minha Evolucao" },
+  { id: "evolucao", icon: "↗", label: "Minha Evolução" },
   { id: "chat", icon: "○", label: "Mensagens" },
 ];
 
 const personalItems = [
-  { id: "dashboard", icon: "•", label: "Inicio" },
+  { id: "dashboard", icon: "●", label: "Início" },
   { id: "alunos", icon: "●", label: "Meus Alunos" },
   { id: "agenda", icon: "□", label: "Agenda" },
   { id: "treinos", icon: "◆", label: "Treinos" },

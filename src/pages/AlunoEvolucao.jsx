@@ -8,15 +8,15 @@ export default function AlunoEvolucao() {
   return (
     <div className="fade-in" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div>
-        <h2 style={{ fontSize: 26, fontWeight: 700, fontFamily: "'Archivo Black', sans-serif" }}>Minha Evolucao</h2>
-        <p style={{ color: COLORS.muted, marginTop: 4 }}>Resumo das ultimas oito semanas.</p>
+        <h2 style={{ fontSize: 26, fontWeight: 700, fontFamily: "'Archivo Black', sans-serif" }}>Minha Evolução</h2>
+        <p style={{ color: COLORS.muted, marginTop: 4 }}>Resumo das últimas oito semanas.</p>
       </div>
       <div style={{ display: "flex", gap: 16 }}>
         {[
-          { label: "Peso atual", value: "78 kg", delta: "-4kg desde o inicio", good: true },
+          { label: "Peso atual", value: "78 kg", delta: "-4 kg desde o início", good: true },
           { label: "IMC", value: "24.2", delta: "Normal", good: true },
-          { label: "Gordura", value: "18%", delta: "-2% este mes", good: true },
-          { label: "Treinos", value: "12", delta: "este mes", good: null },
+          { label: "Gordura", value: "18%", delta: "-2% este mês", good: true },
+          { label: "Treinos", value: "11", delta: "este mês", good: null },
         ].map((stat) => (
           <div key={stat.label} className="stat-card">
             <div style={{ color: COLORS.muted, fontSize: 12, marginBottom: 8 }}>{stat.label}</div>
@@ -26,7 +26,7 @@ export default function AlunoEvolucao() {
         ))}
       </div>
       <div className="card">
-        <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 20 }}>Peso corporal (kg) - ultimas 8 semanas</div>
+        <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 20 }}>Peso corporal (kg) - últimas 8 semanas</div>
         <div style={{ display: "flex", alignItems: "flex-end", gap: 10, height: 160 }}>
           {pesoData.map((value, index) => (
             <div key={weeks[index]} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
@@ -42,11 +42,11 @@ export default function AlunoEvolucao() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
           {[
             ["Peito", "98cm", "+2cm", false],
-            ["Braco", "35cm", "+1.5cm", false],
+            ["Braço", "35cm", "+1,5cm", false],
             ["Cintura", "82cm", "-3cm", true],
             ["Quadril", "94cm", "-1cm", true],
             ["Coxa", "56cm", "+2cm", false],
-            ["Panturrilha", "37cm", "+0.5cm", false],
+            ["Panturrilha", "37cm", "+0,5cm", false],
           ].map(([label, value, delta, goodIfNegative]) => {
             const isPositive = delta.startsWith("+");
             const isGood = goodIfNegative ? !isPositive : isPositive;

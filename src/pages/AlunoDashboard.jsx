@@ -6,11 +6,11 @@ export default function AlunoDashboard() {
     <div className="fade-in" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       <div>
         <h2 style={{ fontSize: 26, fontWeight: 700, fontFamily: "'Archivo Black', sans-serif" }}>Bom dia, Gabriel.</h2>
-        <p style={{ color: COLORS.muted, marginTop: 4 }}>Voce tem 2 treinos confirmados esta semana.</p>
+        <p style={{ color: COLORS.muted, marginTop: 4 }}>Você tem 2 treinos confirmados esta semana.</p>
       </div>
       <div style={{ display: "flex", gap: 16 }}>
         {[
-          { label: "Treinos no mes", value: "12", delta: "+3", color: "#22c55e" },
+          { label: "Treinos no mês", value: "11", delta: "+2", color: "#22c55e" },
           { label: "Horas treinadas", value: "18h", delta: "+2h", color: "#22c55e" },
           { label: "Meta semanal", value: "80%", delta: "4/5 dias", color: "#f59e0b" },
           { label: "Personal", value: "Carlos M.", delta: "Ativo", color: "#22c55e" },
@@ -24,7 +24,7 @@ export default function AlunoDashboard() {
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         <div className="card">
-          <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 16 }}>Proximos treinos</div>
+          <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 16 }}>Próximos treinos</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {SCHEDULE.map((session) => (
               <div key={`${session.day}-${session.time}`} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", background: "#161616", borderRadius: 8 }}>
@@ -45,7 +45,7 @@ export default function AlunoDashboard() {
         </div>
 
         <div className="card">
-          <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 16 }}>Evolucao fisica</div>
+          <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 16 }}>Evolução física</div>
           {[
             { label: "Peso", current: "78kg", goal: "72kg", progress: 60 },
             { label: "Gordura corporal", current: "18%", goal: "12%", progress: 40 },

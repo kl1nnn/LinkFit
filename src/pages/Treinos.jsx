@@ -29,7 +29,7 @@ export default function Treinos() {
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>
                   <thead>
                     <tr>
-                      {["Exercicio", "Series", "Reps", "Carga"].map((heading) => (
+                      {["Exercício", "Séries", "Reps", "Carga"].map((heading) => (
                         <th key={heading} style={{ textAlign: "left", padding: "6px 12px", color: COLORS.muted, fontSize: 12, fontWeight: 500 }}>{heading}</th>
                       ))}
                     </tr>
