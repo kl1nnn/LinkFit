@@ -1,4 +1,5 @@
 import Logo from "../components/Logo";
+import LogoMark from "../components/LogoMark";
 import { COLORS } from "../constants/theme";
 
 const quickStats = [
@@ -73,7 +74,7 @@ export default function Landing({ onLogin }) {
             <div style={{ display: "flex", height: 340 }}>
               <div style={{ width: 120, background: "#161616", borderRight: `1px solid ${COLORS.border}`, padding: "14px 10px", display: "flex", flexDirection: "column", gap: 4 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 8px", marginBottom: 8 }}>
-                  <span style={{ color: COLORS.accent, fontSize: 14 }}>*</span>
+                  <LogoMark size={14} />
                   <span style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: 11, letterSpacing: 1 }}>LinkFit</span>
                 </div>
                 {["Inicio", "Buscar", "Agenda", "Evolucao", "Chat"].map((item, i) => (
