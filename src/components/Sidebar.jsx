@@ -2,19 +2,19 @@ import Logo from "./Logo";
 import { COLORS } from "../constants/theme";
 
 const alunoItems = [
-  { id: "dashboard", icon: "●", label: "Início" },
-  { id: "buscar", icon: "⌕", label: "Buscar Personal" },
-  { id: "agenda", icon: "□", label: "Minha Agenda" },
-  { id: "evolucao", icon: "↗", label: "Minha Evolução" },
-  { id: "chat", icon: "○", label: "Mensagens" },
+  { id: "dashboard", label: "Início" },
+  { id: "buscar", label: "Buscar Personal" },
+  { id: "agenda", label: "Minha Agenda" },
+  { id: "evolucao", label: "Minha Evolução" },
+  { id: "chat", label: "Mensagens" },
 ];
 
 const personalItems = [
-  { id: "dashboard", icon: "●", label: "Início" },
-  { id: "alunos", icon: "●", label: "Meus Alunos" },
-  { id: "agenda", icon: "□", label: "Agenda" },
-  { id: "treinos", icon: "◆", label: "Treinos" },
-  { id: "chat", icon: "○", label: "Mensagens" },
+  { id: "dashboard", label: "Início" },
+  { id: "alunos", label: "Meus Alunos" },
+  { id: "agenda", label: "Agenda" },
+  { id: "treinos", label: "Treinos" },
+  { id: "chat", label: "Mensagens" },
 ];
 
 export default function Sidebar({ role, active, setActive }) {
@@ -38,7 +38,6 @@ export default function Sidebar({ role, active, setActive }) {
       <nav style={{ display: "flex", flexDirection: "column", gap: 4, flex: 1 }}>
         {items.map((item) => (
           <button key={item.id} className={`nav-item ${active === item.id ? "active" : ""}`} onClick={() => setActive(item.id)}>
-            <span>{item.icon}</span>
             <span>{item.label}</span>
           </button>
         ))}
