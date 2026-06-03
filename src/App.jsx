@@ -37,7 +37,7 @@ export default function App() {
   const [workouts, setWorkouts] = usePersistedState("linkfit-workouts", WORKOUTS);
   const [bookings, setBookings] = usePersistedState("linkfit-bookings", BOOKINGS);
   const [hiredTrainerIds, setHiredTrainerIds] = usePersistedState("linkfit-hired-trainers", []);
-  const [hireRequests, setHireRequests] = usePersistedState("linkfit-hire-requests-v2", HIRE_REQUESTS);
+  const [hireRequests, setHireRequests] = usePersistedState("linkfit-hire-requests-v3", HIRE_REQUESTS);
   const [personalProfile, setPersonalProfile] = usePersistedState("linkfit-personal-profile-v2", CURRENT_PERSONAL_PROFILE);
   const [selectedStudentName, setSelectedStudentName] = useState(storedStudent);
   const todayLabel = formatToday();

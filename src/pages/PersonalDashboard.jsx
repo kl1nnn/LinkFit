@@ -20,17 +20,16 @@ export default function PersonalDashboard({
   const expectedRevenue = bookings.length * 110;
   const firstName = personalProfile.name.split(" ")[0];
   const trainerId = personalProfile.id ?? CURRENT_PERSONAL_PROFILE.id;
-  const requestsWithFallback = [
-    ...hireRequests,
-    ...HIRE_REQUESTS.filter((demoRequest) => (
-      demoRequest.trainerId === trainerId &&
-      !hireRequests.some((request) => request.id === demoRequest.id || (
-        request.trainerId === demoRequest.trainerId &&
-        request.studentName === demoRequest.studentName
-      ))
-    )),
-  ];
-  const pendingRequests = requestsWithFallback.filter((request) => request.trainerId === trainerId && request.status === "pending");
+  const savedPendingRequests = hireRequests.filter((request) => request.trainerId === trainerId && request.status === "pending");
+  const fallbackPendingRequests = HIRE_REQUESTS.filter((request) => (
+    request.trainerId === trainerId &&
+    !hireRequests.some((savedRequest) => savedRequest.id === request.id || (
+      savedRequest.trainerId === request.trainerId &&
+      savedRequest.studentName === request.studentName
+    ))
+  ));
+  const requestsWithFallback = [...savedPendingRequests, ...fallbackPendingRequests];
+  const pendingRequests = requestsWithFallback.slice(0, 2);
 
   const getRequestStudent = (request) => students.find((student) => student.name === request.studentName) ?? {
     name: request.studentName,
