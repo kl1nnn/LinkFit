@@ -42,7 +42,7 @@ export default function MeusAlunos({ students = STUDENTS, setStudents = () => {}
       color: studentColors[students.length % studentColors.length],
       sessions: 0,
       progress: 0,
-      evolution: { weightHistory: [75, 75, 75, 75, 75, 75, 75, 75], bmi: "A calcular", bodyFat: "A calcular" },
+      evolution: { weightHistory: [75, 74.8, 75.1, 74.7, 74.6], bmi: "A calcular", bodyFat: "A calcular" },
     };
 
     setStudents((current) => [...current, student]);

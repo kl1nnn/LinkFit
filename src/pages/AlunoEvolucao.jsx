@@ -11,9 +11,10 @@ const defaultMeasurements = [
   { label: "Coxa", value: "56cm", delta: "+2cm" },
   { label: "Panturrilha", value: "37cm", delta: "+0,5cm" },
 ];
-const defaultEvolution = { weightHistory: [82, 81, 80.5, 79.5, 79, 78.5, 78, 78], bmi: "24.2", bodyFat: "18%", measurements: defaultMeasurements };
+const defaultEvolution = { weightHistory: [82, 81, 80.5, 79.5, 79, 78.5, 78], bmi: "24.2", bodyFat: "18%", measurements: defaultMeasurements };
 
 const formatWeight = (weight) => weight.toLocaleString("pt-BR", { maximumFractionDigits: 1 });
+const weekLabel = (index) => weeks[index] ?? `S${index + 1}`;
 
 export default function AlunoEvolucao({ student, onBack }) {
   const evolution = student?.evolution ?? defaultEvolution;
@@ -23,6 +24,7 @@ export default function AlunoEvolucao({ student, onBack }) {
   const weightDelta = currentWeight - pesoData[0];
   const minPeso = Math.min(...pesoData) - 1;
   const maxPeso = Math.max(...pesoData) + 1;
+  const weightRange = Math.max(maxPeso - minPeso, 1);
 
   return (
     <div className="page fade-in">
@@ -30,7 +32,7 @@ export default function AlunoEvolucao({ student, onBack }) {
         {student && <Avatar person={student} size={56} fontSize={18} />}
         <PageHeader
           title={student ? `Evolução de ${student.name}` : "Minha Evolução"}
-          subtitle={student ? `Acompanhamento individual - ${student.goal}` : "Resumo das últimas oito semanas."}
+          subtitle={student ? `Acompanhamento individual - ${student.goal}` : "Resumo dos registros recentes."}
         >
           {onBack && <button className="btn-ghost" onClick={onBack} style={{ padding: "8px 14px" }}>Voltar para alunos</button>}
         </PageHeader>
@@ -50,13 +52,13 @@ export default function AlunoEvolucao({ student, onBack }) {
         ))}
       </div>
       <div className="card">
-        <div className="section-title" style={{ marginBottom: 20 }}>Peso corporal (kg) - últimas 8 semanas</div>
+        <div className="section-title" style={{ marginBottom: 20 }}>Peso corporal (kg) - {pesoData.length} registros recentes</div>
         <div style={{ display: "flex", alignItems: "flex-end", gap: 10, height: 160 }}>
           {pesoData.map((value, index) => (
-            <div key={weeks[index]} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+            <div key={`${weekLabel(index)}-${value}`} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
               <span style={{ fontSize: 11, color: COLORS.muted }}>{value}</span>
-              <div style={{ width: "100%", height: `${20 + ((value - minPeso) / (maxPeso - minPeso)) * 100}px`, background: index === pesoData.length - 1 ? COLORS.accent : "rgba(224,112,64,0.25)", borderRadius: "4px 4px 0 0", transition: "height 0.4s" }} />
-              <span style={{ fontSize: 11, color: COLORS.muted }}>{weeks[index]}</span>
+              <div style={{ width: "100%", height: `${20 + ((value - minPeso) / weightRange) * 100}px`, background: index === pesoData.length - 1 ? COLORS.accent : "rgba(224,112,64,0.25)", borderRadius: "4px 4px 0 0", transition: "height 0.4s" }} />
+              <span style={{ fontSize: 11, color: COLORS.muted }}>{weekLabel(index)}</span>
             </div>
           ))}
         </div>

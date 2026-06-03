@@ -4,32 +4,11 @@ import InfoBox from "../components/InfoBox";
 import PageHeader from "../components/PageHeader";
 import Stars from "../components/Stars";
 import { COLORS } from "../constants/theme";
-import { STUDENTS, TRAINERS } from "../data/mockData";
+import { STUDENTS, TRAINER_PROFILES, TRAINERS } from "../data/mockData";
 
 const formatSessionPrice = (price) => `R$ ${price}`;
 
-const profileExtras = {
-  "Carlos Mendes": {
-    bio: "Carlos trabalha com alunos que querem ganhar força e massa muscular sem perder constância. O acompanhamento combina treino progressivo, ajustes semanais e comunicação próxima para manter o aluno seguro na execução.",
-    approach: ["Avaliação inicial de rotina, histórico e objetivo", "Planejamento de cargas por evolução semanal", "Correção técnica por mensagem e feedback pós-treino"],
-    availability: ["Segunda, quarta e sexta pela manhã", "Terça e quinta no fim da tarde", "Atendimento presencial em Mogi das Cruzes"],
-    review: "Muito atencioso nos ajustes do treino e explica bem o motivo de cada exercício.",
-  },
-  "Ana Ferreira": {
-    bio: "Ana foca em emagrecimento saudável e treino funcional para alunos que precisam de rotina prática. O trabalho prioriza aderência, condicionamento e pequenas metas semanais.",
-    approach: ["Treinos curtos com alta aderência", "Adaptação para iniciantes", "Acompanhamento de medidas e disposição"],
-    availability: ["Manhãs em Suzano", "Aulas online à noite", "Retorno das mensagens no mesmo dia"],
-    review: "Consegui manter uma rotina que antes sempre abandonava.",
-  },
-  "Ricardo Lima": {
-    bio: "Ricardo une natação e condicionamento para melhorar resistência, respiração e capacidade cardiovascular. É indicado para alunos que buscam performance ou retomada segura.",
-    approach: ["Treinos por blocos de resistência", "Controle de intensidade", "Ajustes para prevenção de lesões"],
-    availability: ["Horários limitados aos sábados", "Avaliação presencial em Mogi", "Planos mensais sob consulta"],
-    review: "Treinos bem organizados e evolução clara na resistência.",
-  },
-};
-
-const getProfileExtra = (trainer) => profileExtras[trainer.name] ?? {
+const getProfileExtra = (trainer) => TRAINER_PROFILES[trainer.name] ?? {
   bio: `${trainer.name} atende alunos em ${trainer.location} com foco em ${trainer.specialty.join(", ").toLowerCase()}. O plano é montado de acordo com rotina, nível atual e objetivo do aluno.`,
   approach: ["Avaliação inicial antes do primeiro plano", "Ajustes conforme frequência e feedback", "Contato direto para dúvidas sobre treino"],
   availability: ["Horários flexíveis durante a semana", "Atendimento presencial ou online", "Retorno em até 24 horas"],
