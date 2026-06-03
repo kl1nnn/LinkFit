@@ -1,5 +1,7 @@
+import Avatar from "../components/Avatar";
+import PageHeader from "../components/PageHeader";
 import { COLORS } from "../constants/theme";
-import { STUDENTS } from "../data/mockData";
+import { BOOKINGS, CURRENT_PERSONAL_PROFILE, HIRE_REQUESTS, STUDENTS } from "../data/mockData";
 
 const todaysSessions = [
   { time: "07:00", student: "Gabriel Rocha", type: "Hipertrofia", status: "done" },
@@ -7,19 +9,64 @@ const todaysSessions = [
   { time: "17:00", student: "Henry Bertolatti", type: "Força", status: "upcoming" },
 ];
 
-export default function PersonalDashboard() {
+export default function PersonalDashboard({
+  students = STUDENTS,
+  bookings = BOOKINGS,
+  personalProfile = CURRENT_PERSONAL_PROFILE,
+  hireRequests = [],
+  setHireRequests = () => {},
+  setHiredTrainerIds = () => {},
+}) {
+  const expectedRevenue = bookings.length * 110;
+  const firstName = personalProfile.name.split(" ")[0];
+  const trainerId = personalProfile.id ?? CURRENT_PERSONAL_PROFILE.id;
+  const requestsWithFallback = [
+    ...hireRequests,
+    ...HIRE_REQUESTS.filter((demoRequest) => (
+      demoRequest.trainerId === trainerId &&
+      !hireRequests.some((request) => request.id === demoRequest.id || (
+        request.trainerId === demoRequest.trainerId &&
+        request.studentName === demoRequest.studentName
+      ))
+    )),
+  ];
+  const pendingRequests = requestsWithFallback.filter((request) => request.trainerId === trainerId && request.status === "pending");
+
+  const getRequestStudent = (request) => students.find((student) => student.name === request.studentName) ?? {
+    name: request.studentName,
+    goal: request.studentGoal,
+    avatar: request.studentAvatar,
+    color: request.studentColor,
+    photo: request.studentPhoto,
+  };
+
+  const answerHireRequest = (requestId, status) => {
+    const request = requestsWithFallback.find((item) => item.id === requestId);
+    if (!request) return;
+
+    setHireRequests((current) => {
+      const answeredRequest = { ...request, status, answeredAt: new Date().toISOString() };
+      const alreadySaved = current.some((item) => item.id === requestId);
+
+      return alreadySaved
+        ? current.map((item) => (item.id === requestId ? answeredRequest : item))
+        : [...current, answeredRequest];
+    });
+
+    if (status === "accepted" && request) {
+      setHiredTrainerIds((current) => current.includes(request.trainerId) ? current : [...current, request.trainerId]);
+    }
+  };
+
   return (
-    <div className="fade-in" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-      <div>
-        <h2 style={{ fontSize: 26, fontWeight: 700, fontFamily: "'Archivo Black', sans-serif" }}>Olá, Carlos.</h2>
-        <p style={{ color: COLORS.muted, marginTop: 4 }}>Você tem 3 sessões marcadas para hoje.</p>
-      </div>
+    <div className="page fade-in" style={{ gap: 24 }}>
+      <PageHeader title={`Olá, ${firstName}.`} subtitle={`${todaysSessions.length} sessões marcadas para hoje.`} />
       <div style={{ display: "flex", gap: 16 }}>
         {[
-          { label: "Alunos ativos", value: "23", delta: "+2 este mês" },
-          { label: "Sessões na semana", value: "17", delta: "Seg-Sex" },
+          { label: "Alunos ativos", value: students.length, delta: "cadastros atuais" },
+          { label: "Sessões na semana", value: bookings.length, delta: "agenda completa" },
           { label: "Avaliação média", value: "4,8", delta: "32 avaliações" },
-          { label: "Receita prevista", value: "R$4.180", delta: "+9% vs último mês" },
+          { label: "Receita prevista", value: `R$${expectedRevenue.toLocaleString("pt-BR")}`, delta: "estimativa semanal" },
         ].map((stat) => (
           <div key={stat.label} className="stat-card">
             <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Archivo Black', sans-serif" }}>{stat.value}</div>
@@ -28,9 +75,39 @@ export default function PersonalDashboard() {
           </div>
         ))}
       </div>
+      <div className="card">
+        <div className="section-title">Solicitações de contratação</div>
+        {pendingRequests.length > 0 ? (
+          <div className="hire-request-list">
+            {pendingRequests.map((request) => {
+              const requestStudent = getRequestStudent(request);
+
+              return (
+                <div key={request.id} className="hire-request-card">
+                  <Avatar person={requestStudent} size={46} fontSize={15} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 700 }}>{request.studentName}</div>
+                    <div className="muted" style={{ fontSize: 12 }}>
+                      Objetivo: {request.studentGoal} · Interesse em {request.specialties.join(", ")}
+                    </div>
+                    <div style={{ color: COLORS.accent, fontSize: 12, marginTop: 4, fontWeight: 600 }}>
+                      Proposta: R$ {request.price} por sessão
+                    </div>
+                  </div>
+                  <span className="request-status-pill">Pendente</span>
+                  <button className="btn-ghost" onClick={() => answerHireRequest(request.id, "declined")} style={{ padding: "8px 14px" }}>Recusar</button>
+                  <button className="btn-accent" onClick={() => answerHireRequest(request.id, "accepted")} style={{ padding: "8px 14px" }}>Aceitar</button>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="muted" style={{ fontSize: 13 }}>Nenhuma solicitação pendente no momento.</div>
+        )}
+      </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         <div className="card">
-          <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 16 }}>Sessões de hoje</div>
+          <div className="section-title">Sessões de hoje</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {todaysSessions.map((session) => (
               <div key={`${session.time}-${session.student}`} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", background: "#161616", borderRadius: 8 }}>
@@ -52,13 +129,13 @@ export default function PersonalDashboard() {
         </div>
 
         <div className="card">
-          <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 16 }}>Progresso dos alunos</div>
+          <div className="section-title">Progresso dos alunos</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {STUDENTS.map((student) => (
+            {students.map((student) => (
               <div key={student.name}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div className="avatar" style={{ background: student.color, width: 28, height: 28, fontSize: 11 }}>{student.avatar}</div>
+                    <Avatar person={student} size={28} fontSize={11} />
                     <div>
                       <div style={{ fontSize: 13, fontWeight: 500 }}>{student.name}</div>
                       <div style={{ fontSize: 11, color: COLORS.muted }}>{student.goal}</div>

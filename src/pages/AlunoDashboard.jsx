@@ -1,16 +1,20 @@
+import PageHeader from "../components/PageHeader";
 import { COLORS } from "../constants/theme";
-import { SCHEDULE } from "../data/mockData";
+import { BOOKINGS, STUDENTS } from "../data/mockData";
 
-export default function AlunoDashboard() {
+export default function AlunoDashboard({ student = STUDENTS[0], bookings = BOOKINGS }) {
+  const schedule = bookings
+    .filter((booking) => booking.student === student.name)
+    .map((booking, index) => ({ ...booking, trainer: "Carlos Mendes", status: index < 2 ? "confirmed" : "pending" }));
+  const confirmedSessions = schedule.filter((session) => session.status === "confirmed").length;
+  const firstName = student.name.split(" ")[0];
+
   return (
-    <div className="fade-in" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-      <div>
-        <h2 style={{ fontSize: 26, fontWeight: 700, fontFamily: "'Archivo Black', sans-serif" }}>Bom dia, Gabriel.</h2>
-        <p style={{ color: COLORS.muted, marginTop: 4 }}>Você tem 2 treinos confirmados esta semana.</p>
-      </div>
+    <div className="page fade-in" style={{ gap: 24 }}>
+      <PageHeader title={`Bom dia, ${firstName}.`} subtitle={`Você tem ${confirmedSessions} treinos confirmados esta semana.`} />
       <div style={{ display: "flex", gap: 16 }}>
         {[
-          { label: "Treinos no mês", value: "11", delta: "+2", color: "#22c55e" },
+          { label: "Treinos no mês", value: student.sessions, delta: "+2", color: "#22c55e" },
           { label: "Horas treinadas", value: "18h", delta: "+2h", color: "#22c55e" },
           { label: "Meta semanal", value: "80%", delta: "4/5 dias", color: "#f59e0b" },
           { label: "Personal", value: "Carlos M.", delta: "Ativo", color: "#22c55e" },
@@ -24,9 +28,9 @@ export default function AlunoDashboard() {
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         <div className="card">
-          <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 16 }}>Próximos treinos</div>
+          <div className="section-title">Próximos treinos</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {SCHEDULE.map((session) => (
+            {schedule.map((session) => (
               <div key={`${session.day}-${session.time}`} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", background: "#161616", borderRadius: 8 }}>
                 <div style={{ width: 40, height: 40, background: "rgba(224,112,64,0.1)", borderRadius: 8, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
                   <span style={{ color: COLORS.accent, fontSize: 11, fontWeight: 700 }}>{session.day}</span>
@@ -45,7 +49,7 @@ export default function AlunoDashboard() {
         </div>
 
         <div className="card">
-          <div style={{ fontWeight: 700, fontFamily: "'Archivo Black', sans-serif", marginBottom: 16 }}>Evolução física</div>
+          <div className="section-title">Evolução física</div>
           {[
             { label: "Peso", current: "78kg", goal: "72kg", progress: 60 },
             { label: "Gordura corporal", current: "18%", goal: "12%", progress: 40 },

@@ -1,10 +1,12 @@
+import { useState } from "react";
 import Logo from "../components/Logo";
 import LogoMark from "../components/LogoMark";
 import { COLORS } from "../constants/theme";
+import { STUDENTS, TRAINERS } from "../data/mockData";
 
 const quickStats = [
-  ["38", "Alunos cadastrados"],
-  ["9", "Profissionais parceiros"],
+  [STUDENTS.length, "Alunos na demonstração"],
+  [TRAINERS.length, "Profissionais cadastrados"],
   ["4,7", "Média de avaliação"],
 ];
 
@@ -15,14 +17,40 @@ const features = [
   { title: "Pagamentos", desc: "Registro simples das sessões" },
 ];
 
+const authModes = {
+  signup: {
+    title: "Criar conta",
+    subtitle: "Preencha os dados para começar a usar o LinkFit.",
+    submit: "Criar conta",
+  },
+  login: {
+    title: "Fazer login",
+    subtitle: "Entre com seu e-mail para acessar seu painel.",
+    submit: "Entrar",
+  },
+};
+
 export default function Landing({ onLogin }) {
+  const [authMode, setAuthMode] = useState(null);
+  const [selectedRole, setSelectedRole] = useState("aluno");
+  const activeAuth = authMode ? authModes[authMode] : null;
+
+  const openAuth = (mode) => {
+    setAuthMode(mode);
+  };
+
+  const handleAuthSubmit = (event) => {
+    event.preventDefault();
+    onLogin(selectedRole);
+  };
+
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <nav style={{ padding: "20px 60px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: `1px solid ${COLORS.border}` }}>
         <Logo />
         <div style={{ display: "flex", gap: 12 }}>
-          <button className="btn-ghost" onClick={() => onLogin("aluno")}>Entrar como Aluno</button>
-          <button className="btn-accent" onClick={() => onLogin("personal")}>Sou Personal</button>
+          <button className="btn-ghost" onClick={() => openAuth("login")}>Fazer login</button>
+          <button className="btn-accent" onClick={() => openAuth("signup")}>Criar conta</button>
         </div>
       </nav>
 
@@ -43,13 +71,34 @@ export default function Landing({ onLogin }) {
             Uma plataforma para conectar alunos e personal trainers da região, com agenda, evolução física e mensagens em um só painel.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <button className="btn-accent" style={{ fontSize: 16, padding: "14px 36px" }} onClick={() => onLogin("aluno")}>
-              Acessar como aluno
+            <button className="btn-accent" style={{ fontSize: 16, padding: "14px 36px" }} onClick={() => openAuth("signup")}>
+              Criar conta
             </button>
-            <button className="btn-ghost" style={{ fontSize: 16 }} onClick={() => onLogin("personal")}>
-              Acessar como personal
+            <button className="btn-ghost" style={{ fontSize: 16 }} onClick={() => openAuth("login")}>
+              Fazer login
             </button>
           </div>
+          {activeAuth && (
+            <form className="landing-auth-panel fade-in" onSubmit={handleAuthSubmit}>
+              <div className="landing-auth-header">
+                <div>
+                  <div className="landing-auth-title">{activeAuth.title}</div>
+                  <div className="landing-auth-subtitle">{activeAuth.subtitle}</div>
+                </div>
+                <button type="button" className="btn-ghost landing-auth-close" onClick={() => setAuthMode(null)}>Fechar</button>
+              </div>
+              <div className="landing-auth-fields">
+                {authMode === "signup" && <input required placeholder="Nome completo" />}
+                <input required type="email" placeholder="E-mail" />
+                <input required type="password" placeholder="Senha" />
+                <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)}>
+                  <option value="aluno">Aluno</option>
+                  <option value="personal">Personal trainer</option>
+                </select>
+              </div>
+              <button type="submit" className="btn-accent landing-auth-submit">{activeAuth.submit}</button>
+            </form>
+          )}
           <div style={{ display: "flex", gap: 32, marginTop: 48 }}>
             {quickStats.map(([n, l]) => (
               <div key={l}>

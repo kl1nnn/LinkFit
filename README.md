@@ -41,7 +41,7 @@ npm install
 npm run dev
 ```
 
-Depois acesse o endereço exibido no terminal, normalmente `http://localhost:5173` ou  `https://kl1nnn.github.io/LinkFit/`
+Depois acesse o endereço exibido no terminal, normalmente `http://localhost:5173` ou  https://kl1nnn.github.io/LinkFit/
 
 ## Telas
 
