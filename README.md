@@ -57,10 +57,9 @@ Depois acesse o endereço exibido no terminal, normalmente `http://localhost:517
 
 ## Diagramas
 
-Os diagramas do projeto (casos de uso, classes, MER, arquitetura, pacotes, sequência,
-atividades, estados, navegação e implantação) estão em [`docs/diagramas`](docs/diagramas)
-no formato draw.io, com instruções de abertura e exportação no
-[README da pasta](docs/diagramas/README.md).
+O diagrama de caso de uso e os diagramas de atividades (um para cada tela) estão em
+[`docs/diagramas`](docs/diagramas) no formato draw.io, com instruções de abertura e
+exportação no [README da pasta](docs/diagramas/README.md).
 
 ## Repositório
 

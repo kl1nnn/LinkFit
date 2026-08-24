@@ -1,57 +1,67 @@
 # Diagramas do LinkFit
 
-Documentação visual do projeto **LinkFit**, feita em **draw.io** (diagrams.net).
-Todos os arquivos estão no formato `.drawio` (XML não compactado), podem ser abertos,
-editados e exportados livremente.
+Diagramas do projeto **LinkFit** feitos em **draw.io** (diagrams.net), seguindo o modelo do
+trabalho: um **diagrama de caso de uso** (seção 2) e os **diagramas de atividades**, um para
+cada tela do sistema (seção 5.1.3).
 
-## Como abrir
+Todos os arquivos estão em `.drawio` (XML não compactado) e podem ser abertos, editados e
+exportados livremente.
 
-1. Acesse [app.diagrams.net](https://app.diagrams.net) (ou use o app draw.io Desktop / a extensão do VS Code).
-2. Escolha **File → Open From → Device** e selecione o arquivo desejado.
-3. Para ver todos os diagramas de uma vez, abra `linkfit-todos-os-diagramas.drawio`:
-   cada diagrama fica em uma aba na parte inferior da tela.
+## Como abrir e exportar
 
-Para exportar uma imagem para o relatório: **File → Export as → PNG** (marque *Transparent Background*
-desmarcado e *Zoom 200%* para melhor qualidade) ou **PDF**.
+1. Acesse [app.diagrams.net](https://app.diagrams.net) (ou use o draw.io Desktop / a extensão do VS Code).
+2. **File → Open From → Device** e escolha o arquivo.
+3. Para ver tudo de uma vez, abra `linkfit-diagramas.drawio`: cada diagrama fica em uma aba na parte inferior.
+4. Para colocar no documento: **File → Export as → PNG** (Zoom 200% para melhor qualidade) ou **PDF**.
 
-## Diagramas
+## 2 Diagrama de caso de uso
 
-| # | Arquivo | Diagrama | O que mostra |
-|---|---|---|---|
-| 01 | `01-casos-de-uso.drawio` | Casos de uso (UML) | Atores Aluno e Personal Trainer, casos de uso de cada perfil, casos comuns herdados do ator Usuário e as relações «include» / «extend». |
-| 02 | `02-diagrama-de-classes.drawio` | Classes (UML) | Modelo de domínio: Usuario, Aluno, PersonalTrainer, Evolucao, Medida, SolicitacaoContratacao, Agendamento, Treino, Exercicio, Conversa, Mensagem, Preferencias e o utilitário de armazenamento local. |
-| 03 | `03-modelo-entidade-relacionamento.drawio` | Entidade-Relacionamento (MER/DER) | Modelo relacional proposto para a evolução do protótipo, com chaves primárias, estrangeiras e cardinalidades em pé-de-galinha. |
-| 04 | `04-arquitetura-componentes.drawio` | Componentes / Arquitetura | Como a SPA está organizada: `main.jsx`, `App.jsx`, páginas por perfil, componentes reutilizáveis, hooks, utilitários e as APIs do navegador usadas (localStorage, FileReader, MediaRecorder, Canvas, Intl). |
-| 05 | `05-diagrama-de-pacotes.drawio` | Pacotes | Estrutura de diretórios do repositório e as dependências «import» entre `pages`, `components`, `hooks`, `utils`, `data` e `constants`. |
-| 06 | `06-sequencia-contratacao-personal.drawio` | Sequência | Solicitação de contratação enviada pelo aluno e a resposta (aceitar/recusar) do personal, com o fragmento `alt`. |
-| 07 | `07-sequencia-envio-mensagem.drawio` | Sequência | Envio de mensagem no chat nos três formatos: texto, imagem (FileReader) e áudio (MediaRecorder). |
-| 08 | `08-atividades-agendar-treino.drawio` | Atividades | Fluxo de agendamento de treino com raias (Personal / Sistema / Persistência) e a verificação de conflito de horário. |
-| 09 | `09-maquina-de-estados.drawio` | Máquina de estados | Ciclo de vida da solicitação de contratação, da sessão do usuário e da sessão de treino. |
-| 10 | `10-fluxo-de-navegacao.drawio` | Navegação de telas | Mapa das telas por perfil, controlado pelos estados `screen`, `role` e `view`. |
-| 11 | `11-diagrama-de-implantacao.drawio` | Implantação | Da máquina do desenvolvedor ao GitHub Pages, incluindo `npm run build`, `npm run deploy` e o navegador do usuário. |
-| — | `linkfit-todos-os-diagramas.drawio` | Todos | Arquivo único com os 11 diagramas em abas separadas. |
+| Figura | Arquivo | Conteúdo |
+|---|---|---|
+| Figura 1 | `01-diagrama-de-caso-de-uso.drawio` | Atores Aluno e Personal Trainer, o ator Usuário (generalização) com os casos de uso comuns, e as relações «include» e «extend» |
 
-## Correspondência com o código
+## 5.1.3 Diagramas de atividades
 
-| Diagrama | Arquivos de referência |
+| Seção | Arquivo | Tela |
+|---|---|---|
+| 5.1.3.1 | `02-atividades-tela-de-login.drawio` | Tela de Login / Criar conta (escolha do perfil) |
+| 5.1.3.2 | `03-atividades-tela-inicial-aluno.drawio` | Tela Inicial do Aluno |
+| 5.1.3.3 | `04-atividades-tela-buscar-personal.drawio` | Tela Buscar Personal (busca, perfil e solicitação de contratação) |
+| 5.1.3.4 | `05-atividades-tela-minha-agenda.drawio` | Tela Minha Agenda (aluno) |
+| 5.1.3.5 | `06-atividades-tela-minha-evolucao.drawio` | Tela Minha Evolução |
+| 5.1.3.6 | `07-atividades-tela-mensagens.drawio` | Tela de Mensagens (chat) |
+| 5.1.3.7 | `08-atividades-tela-configuracoes.drawio` | Tela de Configurações (perfil e preferências) |
+| 5.1.3.8 | `09-atividades-tela-inicial-personal.drawio` | Tela Inicial do Personal (aceitar/recusar solicitação) |
+| 5.1.3.9 | `10-atividades-tela-meus-alunos-cadastro.drawio` | Tela Meus Alunos — cadastro |
+| 5.1.3.10 | `11-atividades-tela-meus-alunos-consulta.drawio` | Tela Meus Alunos — consulta de treinos e evolução |
+| 5.1.3.11 | `12-atividades-tela-agenda-agendar-treino.drawio` | Tela Agenda — agendar treino |
+| 5.1.3.12 | `13-atividades-tela-treinos-cadastro.drawio` | Tela Treinos — cadastro |
+| 5.1.3.13 | `14-atividades-tela-treinos-edicao-exclusao.drawio` | Tela Treinos — edição e exclusão |
+| — | `linkfit-diagramas.drawio` | Todos os diagramas acima em abas de um único arquivo |
+
+## Legenda dos símbolos
+
+| Símbolo | Significado |
 |---|---|
-| Casos de uso / Navegação | `src/App.jsx`, `src/components/Sidebar.jsx`, `src/pages/Landing.jsx` |
-| Classes / MER | `src/data/students.js`, `src/data/trainers.js`, `src/data/agenda.js`, `src/data/workouts.js`, `src/data/conversations.js` |
-| Arquitetura / Pacotes | `src/main.jsx`, `src/App.jsx`, `src/hooks/usePersistedState.js`, `src/utils/readAvatarFile.js` |
-| Sequência (contratação) | `src/pages/BuscarPersonal.jsx`, `src/pages/PersonalDashboard.jsx` |
-| Sequência (chat) | `src/pages/ChatView.jsx` |
-| Atividades | `src/pages/AlunoAgenda.jsx` |
-| Estados | `src/pages/BuscarPersonal.jsx`, `src/pages/PersonalDashboard.jsx`, `src/App.jsx` |
-| Implantação | `vite.config.js`, `package.json`, `iniciar-linkfit.bat` |
+| Círculo preto | Início da atividade |
+| Círculo com anel | Fim da atividade |
+| Retângulo arredondado laranja | Tela do sistema |
+| Retângulo arredondado branco | Ação do usuário ou do sistema |
+| Losango amarelo | Decisão, com as saídas **Sim** e **Não** |
+| Retângulo vermelho | Aviso de erro, com retorno ao passo anterior |
+| Retângulo verde | Resultado final da atividade |
 
-## Convenções usadas
+## Telas de referência no código
 
-- **Laranja** (`#E07040`): elementos centrais do LinkFit (App, domínio principal).
-- **Azul**: perfil do aluno. **Verde**: perfil do personal trainer.
-- **Amarelo**: dados, persistência e pontos de decisão. **Roxo**: evolução física e componentes visuais.
-- **Cinza**: elementos de infraestrutura e APIs do navegador.
-- Linhas tracejadas representam dependências («import», «usa», «persiste») e retornos de mensagem.
-
-> Observação: o protótipo não possui backend. Onde os diagramas citam banco de dados
-> (principalmente o MER), trata-se do modelo proposto para a próxima etapa do projeto;
-> hoje os dados são mantidos em JSON no `localStorage` do navegador.
+| Tela | Arquivo do projeto |
+|---|---|
+| Login / Criar conta | `src/pages/Landing.jsx` |
+| Tela Inicial do Aluno | `src/pages/AlunoDashboard.jsx` |
+| Buscar Personal | `src/pages/BuscarPersonal.jsx` |
+| Minha Agenda / Agenda | `src/pages/AlunoAgenda.jsx` |
+| Minha Evolução / Evolução do aluno | `src/pages/AlunoEvolucao.jsx` |
+| Mensagens | `src/pages/ChatView.jsx` |
+| Configurações | `src/pages/Configuracoes.jsx` |
+| Tela Inicial do Personal | `src/pages/PersonalDashboard.jsx` |
+| Meus Alunos | `src/pages/MeusAlunos.jsx` |
+| Treinos | `src/pages/Treinos.jsx` |

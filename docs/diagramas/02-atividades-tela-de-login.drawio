@@ -1,0 +1,89 @@
+<mxfile host="app.diagrams.net" agent="LinkFit" version="24.7.17" type="device">
+  <diagram id="linkfit-01" name="5.1.3.1 - Tela de Login">
+      <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="1420" math="0" shadow="0">
+        <root>
+          <mxCell id="0" />
+          <mxCell id="1" parent="0" />
+        <mxCell id="n1" value="5.1.3.1  Tela de Login" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#E07040;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="900" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="Diagrama de Atividades - LinkFit (UMC / Engenharia de Software)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="40" y="64" width="1000" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="" style="ellipse;html=1;fillColor=#1F1F1F;strokeColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="565.0" y="120" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="Tela de Login
+(pagina inicial do LinkFit)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fontSize=13;fontStyle=1;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;" vertex="1" parent="1">
+          <mxGeometry x="420" y="205" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="Escolher &#x27;Fazer login&#x27; ou &#x27;Criar conta&#x27;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fontSize=13;fillColor=#FFFFFF;strokeColor=#3B2418;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="420" y="310" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" value="Preencher e-mail, senha e perfil
+(Aluno ou Personal trainer)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fontSize=13;fillColor=#FFFFFF;strokeColor=#3B2418;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="420" y="415" width="330" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" value="Campo em branco?" style="rhombus;whiteSpace=wrap;html=1;fontSize=12;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="440.0" y="530" width="290" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" value="Perfil = Aluno?" style="rhombus;whiteSpace=wrap;html=1;fontSize=12;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="440.0" y="695" width="290" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" value="Tela Inicial do Aluno" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fontSize=13;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="420" y="860" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" value="" style="ellipse;shape=endState;html=1;fillColor=#1F1F1F;strokeColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="565.0" y="965" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" value="Por favor digitar usuario e senha" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fontSize=13;fillColor=#FDECEC;strokeColor=#D94040;fontColor=#4E1414;" vertex="1" parent="1">
+          <mxGeometry x="30" y="560.0" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" value="Tela Inicial do Personal" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fontSize=13;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="830" y="860.0" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n3" target="n4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n4" target="n5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n5" target="n6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n6" target="n7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" value="Sim" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n7" target="n11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n11" target="n6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200.0" y="450.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n19" value="Nao" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n7" target="n8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" value="Sim" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n8" target="n9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" value="Nao" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n8" target="n12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000.0" y="755.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n9" target="n10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1F1F1F;fontSize=12;fontColor=#1F1F1F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n12" target="n10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        </root>
+      </mxGraphModel>
+  </diagram>
+</mxfile>
