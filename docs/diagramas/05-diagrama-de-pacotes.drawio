@@ -1,0 +1,175 @@
+<mxfile host="app.diagrams.net" agent="LinkFit" version="24.7.17" type="device">
+  <diagram id="linkfit-01" name="05 - Diagrama de Pacotes">
+      <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1560" pageHeight="1120" math="0" shadow="0">
+        <root>
+          <mxCell id="0" />
+          <mxCell id="1" parent="0" />
+        <mxCell id="n1" value="LinkFit - Diagrama de Pacotes (estrutura de diretorios)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#E07040;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="900" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="Organizacao do repositorio kl1nnn/LinkFit e as dependencias &amp;laquo;import&amp;raquo; entre os modulos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="40" y="64" width="1000" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="LinkFit  (raiz do repositorio)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;verticalAlign=top;align=left;fontSize=14;fontStyle=1;spacingLeft=12;spacingTop=4;fillColor=none;strokeColor=#B0B0B0;dashed=1;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="20" y="120" width="1420" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="configuracao
+
+index.html
+package.json
+vite.config.js  (base: /LinkFit/)
+eslint.config.js
+iniciar-linkfit.bat
+README.md" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="50" y="170" width="320" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="public/
+
+favicon.svg
+icons.svg
+linkfit-favicon.svg
+student-photos/  (8 imagens)
+trainer-photos/  (9 imagens)" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="50" y="400" width="320" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" value="src/" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;verticalAlign=top;align=left;fontSize=14;fontStyle=1;spacingLeft=12;spacingTop=4;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;fillColor=#FFFBF8;" vertex="1" parent="1">
+          <mxGeometry x="420" y="150" width="1000" height="840" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" value="main.jsx
+
+createRoot + StrictMode" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;" vertex="1" parent="1">
+          <mxGeometry x="450" y="200" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" value="App.jsx
+
+estado global, papeis
+e roteamento por view" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;" vertex="1" parent="1">
+          <mxGeometry x="450" y="310" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" value="estilos
+
+index.css
+App.css" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="450" y="440" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" value="assets/
+
+hero.png" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="450" y="560" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" value="components/
+
+Avatar.jsx
+InfoBox.jsx
+Logo.jsx
+LogoMark.jsx
+PageHeader.jsx
+Sidebar.jsx
+Stars.jsx" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="720" y="200" width="290" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" value="pages/
+
+Landing.jsx
+AlunoDashboard.jsx
+BuscarPersonal.jsx
+AlunoAgenda.jsx
+AlunoEvolucao.jsx
+ChatView.jsx
+Configuracoes.jsx
+PersonalDashboard.jsx
+MeusAlunos.jsx
+Treinos.jsx" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="200" width="320" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" value="hooks/
+
+usePersistedState.js" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="720" y="450" width="290" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" value="utils/
+
+readAvatarFile.js" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="720" y="580" width="290" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" value="data/
+
+mockData.js  (barril)
+students.js
+trainers.js
+agenda.js
+workouts.js
+conversations.js
+assets.js" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="540" width="320" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" value="constants/
+
+theme.js  (paleta COLORS)" style="shape=folder;fontStyle=1;spacingTop=12;tabWidth=70;tabHeight=16;tabPosition=left;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;fontSize=12;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="720" y="710" width="290" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n7" target="n8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n7" target="n9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n8" target="n12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n8" target="n11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n8" target="n13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n22" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n8" target="n15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n23" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n8" target="n16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n24" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n12" target="n11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n25" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n12" target="n13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n26" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n12" target="n14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n27" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n12" target="n15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n28" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n12" target="n16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n29" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n11" target="n16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n30" value="&amp;laquo;import&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n11" target="n15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n31" value="referencia as fotos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n15" target="n5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n32" value="hero.png" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n12" target="n10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n33" value="ponto de entrada
+(index.html)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=10;fontColor=#444444;" edge="1" parent="1" source="n4" target="n7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n34" value="Regra de dependencia adotada: pages e App conhecem components, hooks, utils e data; components dependem apenas de constants e data. Nenhum modulo de nivel mais baixo importa uma pagina, o que evita ciclos de importacao." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1050" width="480" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="n35" value="data/mockData.js funciona como barril (re-exporta os demais arquivos de dados), portanto as paginas importam sempre de um unico ponto." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="530" y="1050" width="440" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="n36" value="data/assets.js monta os caminhos das fotos usando import.meta.env.BASE_URL, o que mantem as imagens funcionando no GitHub Pages (base /LinkFit/)." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="1050" width="440" height="130" as="geometry" />
+        </mxCell>
+        </root>
+      </mxGraphModel>
+  </diagram>
+</mxfile>

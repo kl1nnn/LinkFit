@@ -1,0 +1,158 @@
+<mxfile host="app.diagrams.net" agent="LinkFit" version="24.7.17" type="device">
+  <diagram id="linkfit-01" name="11 - Diagrama de Implantacao">
+      <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1080" math="0" shadow="0">
+        <root>
+          <mxCell id="0" />
+          <mxCell id="1" parent="0" />
+        <mxCell id="n1" value="LinkFit - Diagrama de Implantacao (Deployment)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#E07040;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="900" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="Do ambiente de desenvolvimento ao GitHub Pages: aplicacao estatica, sem servidor de aplicacao" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="40" y="64" width="1000" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="&amp;laquo;device&amp;raquo;
+Maquina do desenvolvedor" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=12;verticalAlign=top;align=center;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="40" y="140" width="400" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="&amp;laquo;execution environment&amp;raquo;
+Node.js 20+ / npm" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="70" y="230" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="&amp;laquo;artifact&amp;raquo;
+Codigo-fonte: src/, public/, index.html,
+vite.config.js (base: &#x27;/LinkFit/&#x27;)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;" vertex="1" parent="1">
+          <mxGeometry x="70" y="310" width="340" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" value="&amp;laquo;execution environment&amp;raquo;
+Vite dev server
+http://localhost:5173  (npm run dev)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="70" y="410" width="340" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" value="&amp;laquo;artifact&amp;raquo;
+dist/  gerado por npm run build
+(index.html + assets JS/CSS + imagens)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="70" y="510" width="340" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" value="&amp;laquo;device&amp;raquo;
+GitHub (nuvem)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=12;verticalAlign=top;align=center;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="560" y="140" width="380" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" value="&amp;laquo;artifact&amp;raquo;
+Repositorio kl1nnn/LinkFit" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="590" y="230" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" value="branch main
+codigo-fonte versionado
+e historico do projeto" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;" vertex="1" parent="1">
+          <mxGeometry x="590" y="310" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" value="branch gh-pages
+conteudo estatico publicado
+(gerado por npm run deploy)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="590" y="420" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" value="Publicacao automatica do GitHub Pages
+a cada atualizacao do branch" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="530" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" value="&amp;laquo;execution environment&amp;raquo;
+GitHub Pages (CDN estatico)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=12;verticalAlign=top;align=center;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="140" width="380" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" value="&amp;laquo;artifact&amp;raquo;
+index.html" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="230" width="320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" value="&amp;laquo;artifact&amp;raquo;
+assets/*.js  e  assets/*.css
+(bundle gerado pelo Vite)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="295" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" value="&amp;laquo;artifact&amp;raquo;
+student-photos/ e trainer-photos/
+favicon.svg, icons.svg" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="380" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" value="URL publica
+https://kl1nnn.github.io/LinkFit/" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="470" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" value="Sem servidor de aplicacao
+e sem banco de dados" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="560" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" value="&amp;laquo;device&amp;raquo;
+Dispositivo do usuario" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=12;verticalAlign=top;align=center;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="140" width="320" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" value="&amp;laquo;execution environment&amp;raquo;
+Navegador (Chrome, Edge, Firefox)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="1590" y="230" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" value="&amp;laquo;artifact&amp;raquo;
+SPA LinkFit em execucao
+(React 19)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;" vertex="1" parent="1">
+          <mxGeometry x="1590" y="315" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n22" value="localStorage do dominio
+dados do usuario:
+perfis, agenda, treinos,
+conversas e preferencias" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1590" y="405" width="260" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="n23" value="Microfone e arquivos locais
+(MediaRecorder / FileReader)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=4;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="1590" y="530" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n24" value="git push -u origin &lt;branch&gt;
+(HTTPS)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#E07040;fontSize=11;fontColor=#3B2418;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n3" target="n8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n25" value="publica o conteudo do
+branch gh-pages" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#E07040;fontSize=11;fontColor=#3B2418;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n8" target="n13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n26" value="HTTPS GET
+HTML, JS, CSS e imagens" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#E07040;fontSize=11;fontColor=#3B2418;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n13" target="n19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n27" value="npm run deploy
+(gh-pages -d dist)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n10" target="n11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n28" value="le e grava o estado
+da aplicacao" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="n20" target="n22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n29" value="Ambiente de desenvolvimento
+
+1. npm install
+2. npm run dev
+3. abrir http://localhost:5173
+
+O arquivo iniciar-linkfit.bat executa esses passos no Windows." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="40" y="720" width="400" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="n30" value="Publicacao
+
+1. npm run build  -&gt;  gera dist/
+2. npm run deploy  -&gt;  envia dist/ para gh-pages
+3. GitHub Pages serve https://kl1nnn.github.io/LinkFit/
+
+A opcao base: &#x27;/LinkFit/&#x27; no vite.config.js garante os caminhos corretos das imagens." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="480" y="720" width="460" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="n31" value="Restricao arquitetural
+
+Como a aplicacao e totalmente estatica, os dados vivem no localStorage de cada navegador. Nao ha sincronizacao entre dispositivos nem entre aluno e personal em maquinas diferentes - esse e o principal ponto de evolucao do prototipo (API + banco de dados)." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="980" y="720" width="460" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="n32" value="Requisitos minimos do cliente
+
+Navegador com suporte a ES2020, localStorage habilitado e, para o envio de audio no chat, permissao de uso do microfone." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="720" width="400" height="170" as="geometry" />
+        </mxCell>
+        </root>
+      </mxGraphModel>
+  </diagram>
+</mxfile>

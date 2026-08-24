@@ -1,0 +1,237 @@
+<mxfile host="app.diagrams.net" agent="LinkFit" version="24.7.17" type="device">
+  <diagram id="linkfit-01" name="04 - Arquitetura e Componentes">
+      <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1820" pageHeight="1300" math="0" shadow="0">
+        <root>
+          <mxCell id="0" />
+          <mxCell id="1" parent="0" />
+        <mxCell id="n1" value="LinkFit - Diagrama de Componentes / Arquitetura da Aplicacao" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#E07040;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="900" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="SPA React 19 + Vite, sem backend: o estado da aplicacao e persistido no localStorage do navegador" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="40" y="64" width="1000" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="Navegador do usuario (cliente)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingLeft=10;spacingTop=2;dashed=0;fillColor=none;strokeColor=#B0B0B0;dashed=1;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="20" y="130" width="1400" height="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="Aplicacao LinkFit - SPA React 19 + Vite 8" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingLeft=10;spacingTop=2;dashed=0;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;fillColor=#FFFBF8;" vertex="1" parent="1">
+          <mxGeometry x="50" y="170" width="1340" height="720" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="main.jsx
+&amp;laquo;bootstrap&amp;raquo;
+createRoot + StrictMode" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="80" y="220" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" value="App.jsx
+&amp;laquo;componente raiz&amp;raquo;
+
+- screen (landing | app)
+- role (aluno | personal)
+- view (rota interna)
+- students / workouts / bookings
+- hireRequests / hiredTrainerIds
+- personalProfile
+
+handleLogin() / handleLogout()
+handleSidebarView()" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;align=left;spacingLeft=18;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="340" width="240" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" value="Landing.jsx
+(pagina publica: hero,
+cadastro e login)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="80" y="620" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" value="Shell da aplicacao
+Sidebar.jsx + cabecalho
+(data, notificacoes, Sair)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="80" y="740" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" value="Paginas do perfil Aluno" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingLeft=10;spacingTop=2;dashed=0;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;fillColor=#F7FAFF;" vertex="1" parent="1">
+          <mxGeometry x="370" y="220" width="480" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" value="AlunoDashboard.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="395" y="265" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" value="BuscarPersonal.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="620" y="265" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" value="AlunoAgenda.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="395" y="345" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" value="AlunoEvolucao.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="620" y="345" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" value="ChatView.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="395" y="425" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" value="Configuracoes.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="620" y="425" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" value="view: dashboard | buscar | agenda |
+evolucao | chat | configuracoes" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=13;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;dashed=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="395" y="510" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" value="Paginas do perfil Personal Trainer" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingLeft=10;spacingTop=2;dashed=0;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;fillColor=#F6FCF8;" vertex="1" parent="1">
+          <mxGeometry x="880" y="220" width="480" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" value="PersonalDashboard.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="905" y="265" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" value="MeusAlunos.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="265" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" value="AlunoAgenda.jsx (modo personal)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="905" y="345" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" value="Treinos.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="345" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n22" value="ChatView.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="905" y="425" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n23" value="Configuracoes.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="425" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n24" value="view: dashboard | alunos | agenda | treinos |
+chat | aluno-evolucao | configuracoes" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fontSize=13;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;dashed=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="905" y="510" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n25" value="Componentes reutilizaveis (src/components)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingLeft=10;spacingTop=2;dashed=0;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;fillColor=#FAF7FE;" vertex="1" parent="1">
+          <mxGeometry x="370" y="630" width="480" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n26" value="Avatar.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="395" y="675" width="145" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n27" value="PageHeader.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="550" y="675" width="145" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n28" value="InfoBox.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="705" y="675" width="145" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n29" value="Stars.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="395" y="745" width="145" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n30" value="Logo.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="550" y="745" width="145" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n31" value="LogoMark.jsx" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="705" y="745" width="145" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n32" value="Suporte (hooks, utilitarios, dados e tema)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingLeft=10;spacingTop=2;dashed=0;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;fillColor=#FFFCF3;" vertex="1" parent="1">
+          <mxGeometry x="880" y="630" width="480" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="n33" value="usePersistedState.js
+&amp;laquo;hook&amp;raquo;
+estado + localStorage" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="905" y="675" width="215" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n34" value="readAvatarFile.js
+&amp;laquo;utilitario&amp;raquo;
+recorte 320x320 + JPEG" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="675" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n35" value="src/data (mock)
+students / trainers / agenda /
+workouts / conversations" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="905" y="745" width="215" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n36" value="constants/theme.js
+index.css + App.css" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;align=center;verticalAlign=middle;shape=module;jettyWidth=16;jettyHeight=6;spacingLeft=14;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="745" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n37" value="APIs nativas do navegador" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;verticalAlign=top;align=left;fontSize=13;fontStyle=1;spacingLeft=10;spacingTop=2;dashed=0;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;fillColor=#F7F7F8;" vertex="1" parent="1">
+          <mxGeometry x="50" y="920" width="1340" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="n38" value="localStorage
+
+linkfit-role
+linkfit-view
+linkfit-students
+linkfit-workouts
+linkfit-bookings
+linkfit-hire-requests-v3
+linkfit-hired-trainers
+linkfit-personal-profile-v2
+linkfit-chats-&lt;perfil&gt;
+linkfit-preferences-&lt;perfil&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;align=left;spacingLeft=10;verticalAlign=top;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="965" width="300" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="n39" value="FileReader
+(readAsDataURL)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="420" y="965" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n40" value="Canvas 2D
+(recorte do avatar)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="650" y="965" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n41" value="MediaRecorder +
+getUserMedia (audio)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="880" y="965" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n42" value="Intl.DateTimeFormat
+(data em pt-BR)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="965" width="205" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n43" value="renderiza" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#E07040;strokeWidth=2;fontSize=11;fontColor=#3B2418;" edge="1" parent="1" source="n5" target="n6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n44" value="screen = landing" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#E07040;strokeWidth=2;fontSize=11;fontColor=#3B2418;" edge="1" parent="1" source="n6" target="n7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n45" value="screen = app" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#E07040;strokeWidth=2;fontSize=11;fontColor=#3B2418;" edge="1" parent="1" source="n6" target="n8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n46" value="role = aluno" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#E07040;strokeWidth=2;fontSize=11;fontColor=#3B2418;" edge="1" parent="1" source="n8" target="n9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n47" value="role = personal" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#E07040;strokeWidth=2;fontSize=11;fontColor=#3B2418;" edge="1" parent="1" source="n8" target="n17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n48" value="&amp;laquo;usa&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n9" target="n25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n49" value="&amp;laquo;usa&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n17" target="n25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n50" value="grava role / view" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n8" target="n38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n51" value="&amp;laquo;usa&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n6" target="n33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n52" value="le e grava JSON" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n33" target="n38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n53" value="&amp;laquo;usa&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n34" target="n39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n54" value="&amp;laquo;usa&amp;raquo;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n34" target="n40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n55" value="estado inicial" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n35" target="n6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n56" value="tema e estilos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n36" target="n6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n57" value="data de hoje" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n8" target="n42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n58" value="audio em dataURL" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#5C5C5C;fontSize=11;fontColor=#444444;" edge="1" parent="1" source="n41" target="n38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n59" value="Fluxo de renderizacao: main.jsx monta App.jsx, que decide entre a Landing e o shell autenticado. Dentro do shell, o estado view seleciona a pagina do mapa de views correspondente ao perfil (aluno ou personal)." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="170" width="350" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="n60" value="Persistencia: usePersistedState encapsula useState + useEffect gravando cada chave no localStorage. Nao existe servidor de aplicacao nem banco de dados; a aplicacao e 100% estatica." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="340" width="350" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="n61" value="Midia no chat: imagens sao convertidas em dataURL pelo FileReader e audios sao gravados com MediaRecorder, tambem armazenados em dataURL no localStorage." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="510" width="350" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="n62" value="Fotos de perfil: readAvatarFile recorta a imagem no centro usando Canvas 2D e devolve um JPEG 320x320 em dataURL." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="670" width="350" height="130" as="geometry" />
+        </mxCell>
+        </root>
+      </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,203 @@
+<mxfile host="app.diagrams.net" agent="LinkFit" version="24.7.17" type="device">
+  <diagram id="linkfit-01" name="07 - Sequencia: mensagens do chat">
+      <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1750" pageHeight="1400" math="0" shadow="0">
+        <root>
+          <mxCell id="0" />
+          <mxCell id="1" parent="0" />
+        <mxCell id="n1" value="LinkFit - Diagrama de Sequencia: envio de mensagem no chat" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#E07040;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="900" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="Caso de uso &#x27;Trocar mensagens no chat&#x27; - texto, imagem e audio (src/pages/ChatView.jsx)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="40" y="64" width="1000" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="Usuario
+(aluno ou personal)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fontSize=12;fontStyle=1;verticalAlign=top;spacingTop=2;participant=umlActor;fillColor=#E7F0FF;strokeColor=#4478D0;fontColor=#12294F;" vertex="1" parent="1">
+          <mxGeometry x="20" y="120" width="170" height="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value=":ChatView" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fontSize=12;fontStyle=1;verticalAlign=top;spacingTop=2;fillColor=#FDECE2;strokeColor=#E07040;fontColor=#3B2418;" vertex="1" parent="1">
+          <mxGeometry x="240" y="120" width="200" height="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value=":usePersistedState
+(&#x27;linkfit-chats-&lt;perfil&gt;&#x27;)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fontSize=12;fontStyle=1;verticalAlign=top;spacingTop=2;fillColor=#FFF6DE;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="530" y="120" width="230" height="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" value=":localStorage" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fontSize=12;fontStyle=1;verticalAlign=top;spacingTop=2;fillColor=#F4F4F5;strokeColor=#8A8A8A;fontColor=#1F1F1F;" vertex="1" parent="1">
+          <mxGeometry x="840" y="120" width="190" height="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" value=":FileReader" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fontSize=12;fontStyle=1;verticalAlign=top;spacingTop=2;fillColor=#F1EAFB;strokeColor=#7C3AED;fontColor=#2E1065;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="120" width="180" height="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" value=":MediaRecorder
++ getUserMedia" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fontSize=12;fontStyle=1;verticalAlign=top;spacingTop=2;fillColor=#E6F6EC;strokeColor=#2E9E5B;fontColor=#0F3D24;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="120" width="230" height="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;fillColor=#FDECE2;strokeColor=#E07040;" vertex="1" parent="1">
+          <mxGeometry x="334.0" y="270" width="12" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;width=90;height=26;fillColor=none;strokeColor=#8A8A8A;fontSize=11;fontStyle=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="150" y="220" width="1450" height="980" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" value="[mensagem de texto]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry x="160" y="238" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" value="1: digita a mensagem e aciona &#x27;Enviar&#x27;" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105.0" y="290" as="sourcePoint" />
+            <mxPoint x="340.0" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n13" value="2: valida msg.trim()" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;edgeStyle=orthogonalEdgeStyle;rounded=1;align=left;spacingLeft=6;verticalAlign=middle;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="315" as="sourcePoint" />
+            <mxPoint x="340.0" y="349" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="430.0" y="315" />
+              <mxPoint x="430.0" y="349" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n14" value="3: addMessage({ from: sender, text, time: &#x27;agora&#x27; })" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="385" as="sourcePoint" />
+            <mxPoint x="645.0" y="385" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n15" value="4: setItem(&#x27;linkfit-chats-&lt;perfil&gt;&#x27;, JSON)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="645.0" y="420" as="sourcePoint" />
+            <mxPoint x="935.0" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n16" value="5: balao exibido na conversa selecionada" style="html=1;verticalAlign=bottom;endArrow=open;endFill=0;dashed=1;strokeColor=#6B6B6B;fontSize=11;fontColor=#444444;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="460" as="sourcePoint" />
+            <mxPoint x="105.0" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n17" value="" style="html=1;endArrow=none;dashed=1;strokeColor=#8A8A8A;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="500" as="sourcePoint" />
+            <mxPoint x="1600" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n18" value="[envio de imagem]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry x="158" y="504" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" value="6: seleciona uma imagem (input file)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105.0" y="550" as="sourcePoint" />
+            <mxPoint x="340.0" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n20" value="7: readAsDataURL(arquivo)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="585" as="sourcePoint" />
+            <mxPoint x="1190.0" y="585" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n21" value="8: dataURL da imagem" style="html=1;verticalAlign=bottom;endArrow=open;endFill=0;dashed=1;strokeColor=#6B6B6B;fontSize=11;fontColor=#444444;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1190.0" y="620" as="sourcePoint" />
+            <mxPoint x="340.0" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n22" value="9: addMessage({ from: sender, image: dataURL })" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="655" as="sourcePoint" />
+            <mxPoint x="645.0" y="655" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n23" value="10: setItem(&#x27;linkfit-chats-&lt;perfil&gt;&#x27;, JSON)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="645.0" y="690" as="sourcePoint" />
+            <mxPoint x="935.0" y="690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n24" value="11: miniatura da imagem no balao" style="html=1;verticalAlign=bottom;endArrow=open;endFill=0;dashed=1;strokeColor=#6B6B6B;fontSize=11;fontColor=#444444;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="725" as="sourcePoint" />
+            <mxPoint x="105.0" y="725" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n25" value="" style="html=1;endArrow=none;dashed=1;strokeColor=#8A8A8A;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="765" as="sourcePoint" />
+            <mxPoint x="1600" y="765" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n26" value="[gravacao de audio]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry x="158" y="769" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="n27" value="12: aciona o botao de gravacao" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105.0" y="810" as="sourcePoint" />
+            <mxPoint x="340.0" y="810" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n28" value="13: getUserMedia({ audio: true }) + recorder.start()" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="845" as="sourcePoint" />
+            <mxPoint x="1455.0" y="845" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n29" value="14: aciona novamente para encerrar" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105.0" y="880" as="sourcePoint" />
+            <mxPoint x="340.0" y="880" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n30" value="15: recorder.stop()" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="915" as="sourcePoint" />
+            <mxPoint x="1455.0" y="915" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n31" value="16: chunks -&gt; Blob(audio)" style="html=1;verticalAlign=bottom;endArrow=open;endFill=0;dashed=1;strokeColor=#6B6B6B;fontSize=11;fontColor=#444444;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1455.0" y="950" as="sourcePoint" />
+            <mxPoint x="340.0" y="950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n32" value="17: readAsDataURL(Blob)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="985" as="sourcePoint" />
+            <mxPoint x="1190.0" y="985" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n33" value="18: dataURL do audio" style="html=1;verticalAlign=bottom;endArrow=open;endFill=0;dashed=1;strokeColor=#6B6B6B;fontSize=11;fontColor=#444444;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1190.0" y="1020" as="sourcePoint" />
+            <mxPoint x="340.0" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n34" value="19: addMessage({ from: sender, audio: dataURL })" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="1055" as="sourcePoint" />
+            <mxPoint x="645.0" y="1055" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n35" value="20: setItem(&#x27;linkfit-chats-&lt;perfil&gt;&#x27;, JSON)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#3B2418;fontSize=11;fontColor=#1F1F1F;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="645.0" y="1090" as="sourcePoint" />
+            <mxPoint x="935.0" y="1090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n36" value="21: player de audio no balao" style="html=1;verticalAlign=bottom;endArrow=open;endFill=0;dashed=1;strokeColor=#6B6B6B;fontSize=11;fontColor=#444444;rounded=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="1130" as="sourcePoint" />
+            <mxPoint x="105.0" y="1130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n37" value="Excecao: se o navegador negar o acesso ao microfone, o bloco catch apenas define isRecording = false e nenhuma mensagem e criada." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="150" y="1230" width="460" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="n38" value="As conversas sao guardadas por perfil (linkfit-chats-aluno e linkfit-chats-personal) e indexadas pelo indice do contato selecionado. Imagens e audios ficam embutidos como dataURL no proprio JSON." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1230" width="480" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="n39" value="O remetente e definido pelo perfil ativo: &#x27;trainer&#x27; quando role = personal e &#x27;me&#x27; quando role = aluno, o que posiciona o balao a direita na tela." style="shape=note;whiteSpace=wrap;html=1;size=14;fontSize=11;align=left;verticalAlign=top;spacingLeft=6;spacingTop=2;fillColor=#FFF9E6;strokeColor=#D9A441;fontColor=#4A360D;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1230" width="450" height="100" as="geometry" />
+        </mxCell>
+        </root>
+      </mxGraphModel>
+  </diagram>
+</mxfile>
