@@ -55,11 +55,11 @@ Depois acesse o endereço exibido no terminal, normalmente `http://localhost:517
 - Lista de alunos
 - Treinos
 
-## Diagramas
+## Diagramas de atividades
 
-O diagrama de caso de uso e os diagramas de atividades do **perfil Personal Trainer**
-(um para cada tela) estão em [`docs/diagramas`](docs/diagramas) no formato draw.io, com
-instruções de abertura e exportação no [README da pasta](docs/diagramas/README.md).
+Os diagramas de atividades do **perfil Personal Trainer** (um para cada tela) estão em
+[`docs/diagramas`](docs/diagramas) no formato draw.io, com instruções de abertura e
+exportação no [README da pasta](docs/diagramas/README.md).
 
 ## Repositório
 
