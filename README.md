@@ -57,9 +57,9 @@ Depois acesse o endereço exibido no terminal, normalmente `http://localhost:517
 
 ## Diagramas
 
-O diagrama de caso de uso e os diagramas de atividades (um para cada tela) estão em
-[`docs/diagramas`](docs/diagramas) no formato draw.io, com instruções de abertura e
-exportação no [README da pasta](docs/diagramas/README.md).
+O diagrama de caso de uso e os diagramas de atividades do **perfil Personal Trainer**
+(um para cada tela) estão em [`docs/diagramas`](docs/diagramas) no formato draw.io, com
+instruções de abertura e exportação no [README da pasta](docs/diagramas/README.md).
 
 ## Repositório
 

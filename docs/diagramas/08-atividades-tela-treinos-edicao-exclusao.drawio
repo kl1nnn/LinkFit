@@ -1,13 +1,13 @@
 <mxfile host="app.diagrams.net" agent="LinkFit" version="24.7.17" type="device">
-  <diagram id="linkfit-01" name="5.1.3.13 - Tela Treinos (edicao e exclusao)">
+  <diagram id="linkfit-01" name="5.1.3.7 - Tela Treinos (edicao e exclusao)">
       <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="1780" math="0" shadow="0">
         <root>
           <mxCell id="0" />
           <mxCell id="1" parent="0" />
-        <mxCell id="n1" value="5.1.3.13  Tela Treinos - edicao e exclusao" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#E07040;" vertex="1" parent="1">
+        <mxCell id="n1" value="5.1.3.7  Tela Treinos - edicao e exclusao" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#E07040;" vertex="1" parent="1">
           <mxGeometry x="40" y="30" width="900" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="n2" value="Diagrama de Atividades - LinkFit (UMC / Engenharia de Software)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#555555;" vertex="1" parent="1">
+        <mxCell id="n2" value="Diagrama de Atividades - LinkFit / perfil Personal Trainer (UMC / Engenharia de Software)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#555555;" vertex="1" parent="1">
           <mxGeometry x="40" y="64" width="1000" height="26" as="geometry" />
         </mxCell>
         <mxCell id="n3" value="" style="ellipse;html=1;fillColor=#1F1F1F;strokeColor=#1F1F1F;" vertex="1" parent="1">
