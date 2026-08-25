@@ -1,0 +1,19 @@
+flowchart TD
+  I(("●")) --> A1["Acessar a tela de login do sistema"]
+  A1 --> A2["Informar usuário e senha"]
+  A2 --> A3["Enviar credenciais para validação"]
+  A3 --> D1{"Credenciais válidas?"}
+  D1 -->|"Não"| D2{"3ª tentativa consecutiva?"}
+  D2 -->|"Não"| A4["Exibir mensagem 'usuário ou senha inválidos'"]
+  A4 --> A2
+  D2 -->|"Sim"| A5["Bloquear a conta temporariamente"]
+  A5 --> A6["Enviar link de recuperação de senha"]
+  A6 --> F((("◉")))
+  D1 -->|"Sim"| D3{"Usuário ativo?"}
+  D3 -->|"Não"| A7["Exibir mensagem 'usuário inativo - procure o administrador'"]
+  A7 --> F
+  D3 -->|"Sim"| A8["Identificar o perfil de acesso"]
+  A8 --> A9["Carregar o menu conforme o perfil"]
+  A9 --> A10["Registrar o acesso no histórico de auditoria"]
+  A10 --> A11["Exibir a tela inicial do usuário"]
+  A11 --> F

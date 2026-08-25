@@ -1,0 +1,21 @@
+flowchart TD
+  I(("●")) --> A1["Receber o pedido separado na área de embalagem"]
+  A1 --> A2["Conferir os itens recebidos"]
+  A2 --> A3["Selecionar a embalagem adequada"]
+  A3 --> A4["Embalar os produtos"]
+  A4 --> A5["Pesar e medir os volumes"]
+  A5 --> A6["Registrar volumes, peso e dimensões no sistema"]
+  A6 --> A7["Alterar status do pedido para 'Embalado'"]
+  A7 --> A8["Definir a transportadora conforme região, peso e prazo"]
+  A8 --> A9["Gerar a etiqueta de transporte com código de rastreio"]
+  A9 --> A10["Imprimir e afixar a etiqueta no volume"]
+  A10 --> D1{"Etiqueta impressa corretamente?"}
+  D1 -->|"Não"| A11["Cancelar e reemitir a etiqueta"]
+  A11 --> A10
+  D1 -->|"Sim"| A12["Agrupar volumes por transportadora e gerar romaneio"]
+  A12 --> A13["Entregar a carga para a transportadora"]
+  A13 --> A14["Confirmar a coleta e registrar o despacho"]
+  A14 --> A15["Alterar status do pedido para 'Enviado'"]
+  A15 --> A16["Notificar o cliente com o código de rastreio"]
+  A16 --> A17["Registrar movimentação no histórico"]
+  A17 --> F((("◉")))

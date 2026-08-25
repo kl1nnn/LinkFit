@@ -1,0 +1,104 @@
+flowchart LR
+  %% ==== Atores ====
+  CLI["👤 Cliente"]
+  PLA["🔌 Plataforma de E-commerce<br/>Mercado Livre / Shopee / Lojas"]
+  EST["👤 Funcionário do Estoque"]
+  SEP["👤 Operador de Separação"]
+  EXP["👤 Operador de Expedição"]
+  TRA["🚚 Transportadora"]
+  GER["👤 Gerente de Operações"]
+  ADM["👤 Administrador do Sistema"]
+  COM["👤 Comprador"]
+  FOR["🏭 Fornecedor"]
+
+  subgraph SIS["Sistema de Gestão da Distribuidora Entrega Expressa"]
+    direction TB
+    UC01(["UC01 - Efetuar Login"])
+    UC02(["UC02 - Recuperar Senha"])
+    UC03(["UC03 - Validar Credenciais"])
+    UC04(["UC04 - Gerenciar Usuários e Perfis"])
+    UC05(["UC05 - Receber Pedido da Plataforma"])
+    UC06(["UC06 - Registrar Pedido"])
+    UC07(["UC07 - Notificar Setor de Estoque"])
+    UC08(["UC08 - Verificar Disponibilidade de Estoque"])
+    UC09(["UC09 - Consultar Saldo de Estoque"])
+    UC10(["UC10 - Marcar Pedido como Pendente"])
+    UC11(["UC11 - Separar Produtos"])
+    UC12(["UC12 - Atualizar Estoque"])
+    UC13(["UC13 - Registrar Movimentação no Histórico"])
+    UC14(["UC14 - Registrar Divergência de Separação"])
+    UC15(["UC15 - Embalar Pedido"])
+    UC16(["UC16 - Gerar Etiqueta de Transporte"])
+    UC17(["UC17 - Informar Transportadora"])
+    UC18(["UC18 - Despachar Pedido"])
+    UC19(["UC19 - Consultar Rastreamento do Pedido"])
+    UC20(["UC20 - Notificar Cliente sobre Status"])
+    UC21(["UC21 - Confirmar Entrega"])
+    UC22(["UC22 - Registrar Ocorrência de Entrega"])
+    UC23(["UC23 - Registrar Reposição de Estoque"])
+    UC24(["UC24 - Liberar Pedidos Pendentes"])
+    UC25(["UC25 - Emitir Pedido de Compra"])
+    UC26(["UC26 - Gerar Alerta de Estoque Mínimo"])
+    UC27(["UC27 - Gerar Relatórios Gerenciais"])
+    UC28(["UC28 - Exportar Relatório"])
+    UC29(["UC29 - Consultar Histórico de Movimentações"])
+  end
+
+  %% ==== Associações ator x caso de uso ====
+  USR["👤 Usuário do Sistema"]
+  USR --- UC01
+  CLI --- UC19
+  PLA --- UC05
+  EST --- UC08
+  EST --- UC23
+  SEP --- UC11
+  EXP --- UC15
+  EXP --- UC16
+  EXP --- UC18
+  TRA --- UC18
+  TRA --- UC21
+  GER --- UC27
+  GER --- UC29
+  ADM --- UC04
+  COM --- UC25
+  FOR --- UC23
+
+  %% ==== Generalização de atores ====
+  CLI -.->|"generalização"| USR
+  EST -.->|"generalização"| USR
+  SEP -.->|"generalização"| USR
+  EXP -.->|"generalização"| USR
+  GER -.->|"generalização"| USR
+  ADM -.->|"generalização"| USR
+  COM -.->|"generalização"| USR
+
+  %% ==== Relacionamentos <<include>> ====
+  UC01 -.->|"«include»"| UC03
+  UC05 -.->|"«include»"| UC06
+  UC05 -.->|"«include»"| UC07
+  UC08 -.->|"«include»"| UC09
+  UC11 -.->|"«include»"| UC12
+  UC11 -.->|"«include»"| UC13
+  UC16 -.->|"«include»"| UC17
+  UC18 -.->|"«include»"| UC13
+  UC21 -.->|"«include»"| UC13
+  UC23 -.->|"«include»"| UC12
+  UC23 -.->|"«include»"| UC13
+  UC12 -.->|"«include»"| UC13
+  UC27 -.->|"«include»"| UC29
+
+  %% ==== Relacionamentos <<extend>> ====
+  UC02 -.->|"«extend»"| UC01
+  UC10 -.->|"«extend»"| UC08
+  UC14 -.->|"«extend»"| UC11
+  UC20 -.->|"«extend»"| UC18
+  UC22 -.->|"«extend»"| UC21
+  UC24 -.->|"«extend»"| UC23
+  UC26 -.->|"«extend»"| UC12
+  UC25 -.->|"«extend»"| UC26
+  UC28 -.->|"«extend»"| UC27
+
+  classDef ator fill:#e8f0fe,stroke:#1a56db,stroke-width:1px,color:#0b2545;
+  classDef uc fill:#ffffff,stroke:#475569,stroke-width:1px,color:#0f172a;
+  class USR,CLI,PLA,EST,SEP,EXP,TRA,GER,ADM,COM,FOR ator;
+  class UC01,UC02,UC03,UC04,UC05,UC06,UC07,UC08,UC09,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23,UC24,UC25,UC26,UC27,UC28,UC29 uc;

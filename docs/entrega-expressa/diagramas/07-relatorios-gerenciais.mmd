@@ -1,0 +1,22 @@
+flowchart TD
+  I(("●")) --> A1["Gerente acessa o módulo de relatórios"]
+  A1 --> D0{"Perfil autorizado?"}
+  D0 -->|"Não"| A2["Exibir mensagem de acesso negado e registrar tentativa"]
+  A2 --> F((("◉")))
+  D0 -->|"Sim"| A3["Selecionar o tipo de relatório"]
+  A3 --> A4["Definir filtros: período, setor, produto e transportadora"]
+  A4 --> D1{"Filtros válidos?"}
+  D1 -->|"Não"| A5["Exibir mensagem de filtro inválido"]
+  A5 --> A4
+  D1 -->|"Sim"| A6["Consultar a base de dados e o histórico de movimentações"]
+  A6 --> D2{"Existem registros no período?"}
+  D2 -->|"Não"| A7["Informar 'nenhum registro encontrado'"]
+  A7 --> A4
+  D2 -->|"Sim"| A8["Consolidar os indicadores e calcular os totais"]
+  A8 --> A9["Exibir o relatório em tela com tabelas e gráficos"]
+  A9 --> D3{"Exportar o relatório?"}
+  D3 -->|"Sim"| A10["Selecionar o formato PDF ou Excel"]
+  A10 --> A11["Gerar o arquivo e disponibilizar o download"]
+  A11 --> A12["Registrar a geração do relatório no histórico"]
+  D3 -->|"Não"| A12
+  A12 --> F

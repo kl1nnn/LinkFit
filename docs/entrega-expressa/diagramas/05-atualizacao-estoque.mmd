@@ -1,0 +1,24 @@
+flowchart TD
+  I(("●")) --> A1["Receber o evento de movimentação de estoque"]
+  A1 --> D1{"Tipo de movimentação"}
+  D1 -->|"Entrada - reposição ou devolução"| A2["Conferir nota fiscal e quantidades recebidas"]
+  A2 --> A3["Somar as quantidades ao saldo do produto"]
+  D1 -->|"Saída - separação de pedido"| A4["Validar o saldo reservado"]
+  A4 --> D2{"Saldo disponível?"}
+  D2 -->|"Não"| A5["Bloquear a operação e notificar o estoque"]
+  A5 --> F((("◉")))
+  D2 -->|"Sim"| A6["Subtrair as quantidades do saldo do produto"]
+  D1 -->|"Ajuste - inventário"| A7["Informar a justificativa do ajuste"]
+  A7 --> A8["Recalcular o saldo do produto"]
+  A3 --> A9["Gravar a movimentação com usuário, data e hora"]
+  A6 --> A9
+  A8 --> A9
+  A9 --> A10["Atualizar o saldo disponível do produto"]
+  A10 --> D3{"Saldo abaixo do estoque mínimo?"}
+  D3 -->|"Sim"| A11["Gerar alerta de reposição"]
+  A11 --> A12["Verificar pedidos pendentes do produto"]
+  D3 -->|"Não"| A12
+  A12 --> D4{"Existem pedidos pendentes atendíveis?"}
+  D4 -->|"Sim"| A13["Liberar os pedidos para separação e notificar o estoque"]
+  A13 --> F
+  D4 -->|"Não"| F

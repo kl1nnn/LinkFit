@@ -1,0 +1,26 @@
+flowchart TD
+  I(("●")) --> A1["Receber alerta de estoque mínimo ou de pedido pendente"]
+  A1 --> A2["Comprador analisa a necessidade de compra"]
+  A2 --> D1{"Reposição aprovada?"}
+  D1 -->|"Não"| A3["Registrar a justificativa e manter o pedido pendente"]
+  A3 --> F((("◉")))
+  D1 -->|"Sim"| A4["Emitir o pedido de compra ao fornecedor"]
+  A4 --> A5["Fornecedor confirma o prazo e envia a mercadoria"]
+  A5 --> A6["Receber a mercadoria no centro de distribuição"]
+  A6 --> A7["Conferir a nota fiscal com os itens recebidos"]
+  A7 --> D2{"Conferência sem divergências?"}
+  D2 -->|"Não"| A8["Registrar a ocorrência e comunicar o fornecedor"]
+  A8 --> D3{"Aceitar o recebimento parcial?"}
+  D3 -->|"Não"| A9["Devolver a mercadoria e cancelar a entrada"]
+  A9 --> F
+  D3 -->|"Sim"| A10["Registrar a entrada apenas dos itens conferidos"]
+  D2 -->|"Sim"| A11["Registrar a entrada total da mercadoria"]
+  A10 --> A12["Endereçar os produtos no armazém"]
+  A11 --> A12
+  A12 --> A13["Atualizar o saldo do estoque"]
+  A13 --> A14["Registrar movimentação no histórico"]
+  A14 --> A15["Verificar os pedidos pendentes dos produtos repostos"]
+  A15 --> D4{"Existem pedidos pendentes atendíveis?"}
+  D4 -->|"Sim"| A16["Liberar os pedidos e notificar o setor de estoque"]
+  A16 --> F
+  D4 -->|"Não"| F

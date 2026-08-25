@@ -1,0 +1,24 @@
+flowchart TD
+  I(("●")) --> A1["Cliente acessa a área de acompanhamento de pedidos"]
+  A1 --> A2["Informar o número do pedido e o CPF ou e-mail"]
+  A2 --> A3["Sistema valida os dados informados"]
+  A3 --> D1{"Pedido localizado?"}
+  D1 -->|"Não"| A4["Exibir mensagem 'pedido não localizado'"]
+  A4 --> D2{"Cliente deseja tentar novamente?"}
+  D2 -->|"Sim"| A2
+  D2 -->|"Não"| F((("◉")))
+  D1 -->|"Sim"| A5["Consultar o status interno do pedido"]
+  A5 --> D3{"Pedido já despachado?"}
+  D3 -->|"Não"| A6["Exibir status interno: recebido, pendente, em separação ou embalado"]
+  D3 -->|"Sim"| A7["Consultar os eventos na API da transportadora"]
+  A7 --> D4{"Transportadora respondeu?"}
+  D4 -->|"Não"| A8["Exibir último status conhecido e aviso de indisponibilidade"]
+  D4 -->|"Sim"| A9["Exibir linha do tempo com os eventos de transporte"]
+  A6 --> A10["Exibir previsão de entrega e histórico do pedido"]
+  A8 --> A10
+  A9 --> A10
+  A10 --> D5{"Cliente deseja receber notificações?"}
+  D5 -->|"Sim"| A11["Registrar preferência de notificação por e-mail"]
+  A11 --> A12["Registrar a consulta no histórico"]
+  D5 -->|"Não"| A12
+  A12 --> F

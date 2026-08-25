@@ -1,0 +1,17 @@
+flowchart TD
+  I(("●")) --> A1["Plataforma de e-commerce envia o pedido via API"]
+  A1 --> A2["Sistema recebe e valida os dados do pedido"]
+  A2 --> D1{"Dados completos e válidos?"}
+  D1 -->|"Não"| A3["Registrar erro de integração"]
+  A3 --> A4["Notificar o suporte técnico"]
+  A4 --> F((("◉")))
+  D1 -->|"Sim"| D2{"Pedido já registrado?"}
+  D2 -->|"Sim"| A5["Descartar duplicidade e registrar log"]
+  A5 --> F
+  D2 -->|"Não"| A6["Gerar número interno do pedido"]
+  A6 --> A7["Registrar pedido com status 'Recebido'"]
+  A7 --> A8["Vincular cliente, itens, quantidades e endereço"]
+  A8 --> A9["Notificar automaticamente o setor de estoque"]
+  A9 --> A10["Registrar movimentação no histórico"]
+  A10 --> A11["Disponibilizar o pedido na fila de separação"]
+  A11 --> F

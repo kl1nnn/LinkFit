@@ -1,0 +1,23 @@
+flowchart TD
+  I(("●")) --> A1["Funcionário do estoque acessa a fila de pedidos"]
+  A1 --> A2["Selecionar o pedido a ser atendido"]
+  A2 --> A3["Consultar a disponibilidade dos produtos"]
+  A3 --> D1{"Estoque suficiente para todos os itens?"}
+  D1 -->|"Não"| A4["Alterar status do pedido para 'Pendente'"]
+  A4 --> A5["Gerar alerta de reposição para o setor de compras"]
+  A5 --> A6["Registrar movimentação no histórico"]
+  A6 --> F((("◉")))
+  D1 -->|"Sim"| A7["Reservar os itens do pedido"]
+  A7 --> A8["Gerar a ordem de separação com endereços de armazenagem"]
+  A8 --> A9["Separar fisicamente os produtos"]
+  A9 --> A10["Conferir os itens com leitor de código de barras"]
+  A10 --> D2{"Conferência sem divergências?"}
+  D2 -->|"Não"| A11["Registrar a divergência de separação"]
+  A11 --> D3{"Divergência resolvida no estoque?"}
+  D3 -->|"Sim"| A9
+  D3 -->|"Não"| A4
+  D2 -->|"Sim"| A12["Dar baixa no estoque dos itens separados"]
+  A12 --> A13["Alterar status do pedido para 'Separado'"]
+  A13 --> A14["Registrar movimentação no histórico"]
+  A14 --> A15["Encaminhar o pedido para a embalagem"]
+  A15 --> F
