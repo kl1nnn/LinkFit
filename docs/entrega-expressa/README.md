@@ -9,6 +9,7 @@ e diagramas de atividades do sistema integrado do centro de distribuição da em
 | **Empresa (estudo de caso)** | Entrega Expressa — distribuidora de e-commerce |
 | **Notação** | UML 2.x (casos de uso e atividades) |
 | **Conteúdo** | 25 requisitos funcionais, 15 não funcionais, 11 atores, 29 casos de uso, 8 diagramas de atividades |
+| **Entrega** | [`Entrega-Expressa-Estudo-de-Caso.docx`](Entrega-Expressa-Estudo-de-Caso.docx) — documento acadêmico com capa, folha de rosto, sumário e todos os diagramas |
 
 ---
 
@@ -323,6 +324,10 @@ Os diagramas de atividades são gerados a partir dos arquivos Mermaid (`diagrama
 casos de uso a partir do script Python (`scripts/gerar_casos_de_uso.py`).
 
 ```bash
+# documento acadêmico (.docx)
+npm install docx
+node docs/entrega-expressa/scripts/gerar_documento_docx.cjs
+
 # diagrama de casos de uso (SVG)
 python3 docs/entrega-expressa/scripts/gerar_casos_de_uso.py
 
@@ -330,9 +335,14 @@ python3 docs/entrega-expressa/scripts/gerar_casos_de_uso.py
 npm install -g @mermaid-js/mermaid-cli
 cd docs/entrega-expressa
 for f in diagramas/*.mmd; do
-  mmdc -i "$f" -o "img/$(basename "$f" .mmd).png" -b white -s 2
+  mmdc -i "$f" -o "img/$(basename "$f" .mmd).png" -b white -s 2   # versão PNG
+  mmdc -i "$f" -o "img/$(basename "$f" .mmd).svg" -b transparent  # versão vetorial
 done
 ```
+
+> Ao abrir o `.docx` no Word, atualize o sumário (`Ctrl+A` e depois `F9`) para gerar a paginação.
+> Os diagramas também estão disponíveis em SVG na pasta `img/`, para inserção em outros documentos
+> sem perda de qualidade.
 
 ### Estrutura dos arquivos
 
@@ -349,7 +359,9 @@ docs/entrega-expressa/
 │   ├── 06-rastreamento-cliente.mmd
 │   ├── 07-relatorios-gerenciais.mmd
 │   └── 08-reposicao-estoque.mmd
-├── img/                         # diagramas renderizados (PNG/SVG)
-└── scripts/
-    └── gerar_casos_de_uso.py    # gera o diagrama de casos de uso em SVG
+├── img/                         # diagramas renderizados (PNG e SVG)
+├── scripts/
+│   ├── gerar_casos_de_uso.py    # gera o diagrama de casos de uso em SVG
+│   └── gerar_documento_docx.cjs # gera o documento acadêmico em .docx
+└── Entrega-Expressa-Estudo-de-Caso.docx
 ```
