@@ -5,61 +5,63 @@ Uso: python3 gerar_casos_de_uso.py  ->  ../img/00-casos-de-uso.svg
 """
 import math, os
 
-W, H = 1900, 1340
-BX0, BY0, BX1, BY1 = 300, 60, 1600, 1275
+W, H = 1960, 1420
+FX0, FY0, FX1, FY1 = 30, 30, W - 30, H - 30       # moldura do diagrama
+BX0, BY0, BX1, BY1 = 330, 130, 1630, 1330         # fronteira do sistema
 RX, RY = 115, 38
-FONT = "Segoe UI, Arial, Helvetica, sans-serif"
+FONT = "Arial, Helvetica, sans-serif"
+AMARELO, TRACO, TRACEJADO = "#FFFFCC", "#000000", "#8C8C8C"
 
-COLUNAS = [440, 740, 1040, 1340]          # centro de cada coluna de casos de uso
-CORREDOR = [590, 890, 1190]               # faixas livres entre as colunas
-CANAL_ESQ, CANAL_DIR = 250, 1660          # canais verticais fora da fronteira
+COLUNAS = [470, 770, 1070, 1370]          # centro de cada coluna de casos de uso
+CORREDOR = [620, 920, 1220]               # faixas livres entre as colunas
+CANAL_ESQ, CANAL_DIR = 265, 1700          # canais verticais fora da fronteira
 
 # id: (x, y, [linhas do rótulo])
 UC = {
-    "UC05": (440, 140, ["UC05 - Receber Pedido", "da Plataforma"]),
-    "UC06": (440, 235, ["UC06 - Registrar", "Pedido"]),
-    "UC07": (440, 330, ["UC07 - Notificar", "Setor de Estoque"]),
-    "UC01": (440, 450, ["UC01 - Efetuar", "Login"]),
-    "UC03": (440, 545, ["UC03 - Validar", "Credenciais"]),
-    "UC02": (440, 640, ["UC02 - Recuperar", "Senha"]),
-    "UC04": (440, 750, ["UC04 - Gerenciar", "Usuários e Perfis"]),
-    "UC08": (740, 140, ["UC08 - Verificar Dispo-", "nibilidade de Estoque"]),
-    "UC09": (740, 235, ["UC09 - Consultar", "Saldo de Estoque"]),
-    "UC10": (740, 330, ["UC10 - Marcar Pedido", "como Pendente"]),
-    "UC11": (740, 450, ["UC11 - Separar", "Produtos"]),
-    "UC14": (740, 545, ["UC14 - Registrar Diver-", "gência de Separação"]),
-    "UC12": (740, 660, ["UC12 - Atualizar", "Estoque"]),
-    "UC13": (740, 755, ["UC13 - Registrar Movi-", "mentação no Histórico"]),
-    "UC26": (740, 850, ["UC26 - Gerar Alerta", "de Estoque Mínimo"]),
-    "UC15": (1040, 140, ["UC15 - Embalar", "Pedido"]),
-    "UC16": (1040, 235, ["UC16 - Gerar Etiqueta", "de Transporte"]),
-    "UC17": (1040, 330, ["UC17 - Informar", "Transportadora"]),
-    "UC18": (1040, 450, ["UC18 - Despachar", "Pedido"]),
-    "UC23": (1040, 900, ["UC23 - Registrar Repo-", "sição de Estoque"]),
-    "UC24": (1040, 995, ["UC24 - Liberar", "Pedidos Pendentes"]),
-    "UC25": (1040, 1090, ["UC25 - Emitir", "Pedido de Compra"]),
-    "UC20": (1340, 545, ["UC20 - Notificar", "Cliente sobre Status"]),
-    "UC21": (1340, 655, ["UC21 - Confirmar", "Entrega"]),
-    "UC22": (1340, 750, ["UC22 - Registrar Ocor-", "rência de Entrega"]),
-    "UC27": (1340, 900, ["UC27 - Gerar Relató-", "rios Gerenciais"]),
-    "UC28": (1340, 995, ["UC28 - Exportar", "Relatório"]),
-    "UC29": (1340, 1090, ["UC29 - Consultar Histó-", "rico de Movimentações"]),
-    "UC19": (1340, 1200, ["UC19 - Consultar Ras-", "treamento do Pedido"]),
+    "UC05": (470, 230, ["UC05 - Receber Pedido", "da Plataforma"]),
+    "UC06": (470, 325, ["UC06 - Registrar", "Pedido"]),
+    "UC07": (470, 420, ["UC07 - Notificar", "Setor de Estoque"]),
+    "UC01": (470, 540, ["UC01 - Efetuar", "Login"]),
+    "UC03": (470, 635, ["UC03 - Validar", "Credenciais"]),
+    "UC02": (470, 730, ["UC02 - Recuperar", "Senha"]),
+    "UC04": (470, 840, ["UC04 - Gerenciar", "Usuários e Perfis"]),
+    "UC08": (770, 230, ["UC08 - Verificar Dispo-", "nibilidade de Estoque"]),
+    "UC09": (770, 325, ["UC09 - Consultar", "Saldo de Estoque"]),
+    "UC10": (770, 420, ["UC10 - Marcar Pedido", "como Pendente"]),
+    "UC11": (770, 540, ["UC11 - Separar", "Produtos"]),
+    "UC14": (770, 635, ["UC14 - Registrar Diver-", "gência de Separação"]),
+    "UC12": (770, 750, ["UC12 - Atualizar", "Estoque"]),
+    "UC13": (770, 845, ["UC13 - Registrar Movi-", "mentação no Histórico"]),
+    "UC26": (770, 940, ["UC26 - Gerar Alerta", "de Estoque Mínimo"]),
+    "UC15": (1070, 230, ["UC15 - Embalar", "Pedido"]),
+    "UC16": (1070, 325, ["UC16 - Gerar Etiqueta", "de Transporte"]),
+    "UC17": (1070, 420, ["UC17 - Informar", "Transportadora"]),
+    "UC18": (1070, 540, ["UC18 - Despachar", "Pedido"]),
+    "UC23": (1070, 990, ["UC23 - Registrar Repo-", "sição de Estoque"]),
+    "UC24": (1070, 1085, ["UC24 - Liberar", "Pedidos Pendentes"]),
+    "UC25": (1070, 1180, ["UC25 - Emitir", "Pedido de Compra"]),
+    "UC20": (1370, 635, ["UC20 - Notificar", "Cliente sobre Status"]),
+    "UC21": (1370, 745, ["UC21 - Confirmar", "Entrega"]),
+    "UC22": (1370, 840, ["UC22 - Registrar Ocor-", "rência de Entrega"]),
+    "UC27": (1370, 990, ["UC27 - Gerar Relató-", "rios Gerenciais"]),
+    "UC28": (1370, 1085, ["UC28 - Exportar", "Relatório"]),
+    "UC29": (1370, 1180, ["UC29 - Consultar Histó-", "rico de Movimentações"]),
+    "UC19": (1370, 1290, ["UC19 - Consultar Ras-", "treamento do Pedido"]),
 }
 
 # id: (x, y, [linhas], lado)
 ATORES = {
-    "PLA": (140, 150, ["Plataforma de", "E-commerce"], "L"),
-    "USR": (140, 300, ["Usuário do Sistema"], "L"),
-    "ADM": (140, 430, ["Administrador", "do Sistema"], "L"),
-    "EST": (140, 560, ["Funcionário", "do Estoque"], "L"),
-    "SEP": (140, 690, ["Operador de", "Separação"], "L"),
-    "EXP": (140, 820, ["Operador de", "Expedição"], "L"),
-    "COM": (140, 950, ["Comprador"], "L"),
-    "GER": (140, 1080, ["Gerente de", "Operações"], "L"),
-    "CLI": (140, 1210, ["Cliente"], "L"),
-    "TRA": (1760, 560, ["Transportadora"], "R"),
-    "FOR": (1760, 950, ["Fornecedor"], "R"),
+    "PLA": (170, 240, ["Plataforma de", "E-commerce"], "L"),
+    "USR": (170, 390, ["Usuário do Sistema"], "L"),
+    "ADM": (170, 520, ["Administrador", "do Sistema"], "L"),
+    "EST": (170, 650, ["Funcionário", "do Estoque"], "L"),
+    "SEP": (170, 780, ["Operador de", "Separação"], "L"),
+    "EXP": (170, 910, ["Operador de", "Expedição"], "L"),
+    "COM": (170, 1040, ["Comprador"], "L"),
+    "GER": (170, 1170, ["Gerente de", "Operações"], "L"),
+    "CLI": (170, 1300, ["Cliente"], "L"),
+    "TRA": (1790, 650, ["Transportadora"], "R"),
+    "FOR": (1790, 1040, ["Fornecedor"], "R"),
 }
 
 ASSOC = [
@@ -153,92 +155,108 @@ svg = [
     f'viewBox="0 0 {W} {H}" font-family="{FONT}">',
     """
 <defs>
-  <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9"
-          markerHeight="9" orient="auto-start-reverse">
-    <path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#334155" stroke-width="1.6"/>
+  <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10"
+          markerHeight="10" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#8C8C8C" stroke-width="1.4"/>
   </marker>
   <marker id="triangulo" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="13"
           markerHeight="13" orient="auto-start-reverse">
-    <path d="M 0 0 L 12 6 L 0 12 z" fill="#ffffff" stroke="#334155" stroke-width="1.4"/>
+    <path d="M 0 0 L 12 6 L 0 12 z" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
   </marker>
 </defs>
 """,
     f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
-    f'<text x="{W/2}" y="36" text-anchor="middle" font-size="25" font-weight="700" '
-    f'fill="#0f172a">Diagrama de Casos de Uso - Sistema de Gestão da Distribuidora '
-    f'Entrega Expressa</text>',
-    f'<rect x="{BX0}" y="{BY0}" width="{BX1-BX0}" height="{BY1-BY0}" rx="10" '
-    f'fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
-    f'<text x="{(BX0+BX1)/2}" y="{BY0+26}" text-anchor="middle" font-size="17" '
-    f'font-weight="600" fill="#334155">Sistema de Gestão do Centro de Distribuição</text>',
 ]
 
-# generalização dos atores
-espinha = 48
+# ---- moldura do diagrama, com a aba de identificação (padrão UML)
+svg.append(
+    f'<rect x="{FX0}" y="{FY0}" width="{FX1-FX0}" height="{FY1-FY0}" fill="none" '
+    f'stroke="{TRACO}" stroke-width="1.2"/>'
+)
+svg.append(
+    f'<path d="M {FX0} {FY0} L {FX0+330} {FY0} L {FX0+330} {FY0+26} '
+    f'L {FX0+310} {FY0+46} L {FX0} {FY0+46} Z" fill="#ffffff" stroke="{TRACO}" '
+    f'stroke-width="1.2"/>'
+)
+svg.append(
+    f'<text x="{FX0+14}" y="{FY0+31}" font-size="17" font-weight="700" fill="{TRACO}">uc'
+    f'<tspan font-weight="400" dx="8">Diagrama de Casos de Uso</tspan></text>'
+)
+
+# ---- fronteira do sistema
+svg.append(
+    f'<rect x="{BX0}" y="{BY0}" width="{BX1-BX0}" height="{BY1-BY0}" fill="none" '
+    f'stroke="{TRACO}" stroke-width="1.2"/>'
+)
+svg.append(
+    f'<text x="{(BX0+BX1)/2}" y="{BY0+30}" text-anchor="middle" font-size="16" '
+    f'font-weight="700" fill="{TRACO}">Sistema de Gestão do Centro de Distribuição</text>'
+)
+
+# ---- generalização dos atores
+espinha = 78
 usr_x, usr_y = ATORES["USR"][0], ATORES["USR"][1]
 for aid in GENERAL:
     ax, ay = ATORES[aid][0], ATORES[aid][1]
     svg.append(
         f'<path d="M {ax-40} {ay} L {espinha} {ay} L {espinha} {usr_y+26}" fill="none" '
-        f'stroke="#334155" stroke-width="1.3"/>'
+        f'stroke="{TRACO}" stroke-width="1"/>'
     )
 svg.append(
     f'<path d="M {espinha} {usr_y+26} L {usr_x-30} {usr_y+26}" fill="none" '
-    f'stroke="#334155" stroke-width="1.3" marker-end="url(#triangulo)"/>'
+    f'stroke="{TRACO}" stroke-width="1" marker-end="url(#triangulo)"/>'
 )
 svg.append(
-    f'<text x="{espinha+9}" y="{usr_y+230}" font-size="13" fill="#64748b" '
-    f'transform="rotate(-90 {espinha+9} {usr_y+230})">generalização de atores</text>'
+    f'<text x="{espinha+9}" y="{usr_y+240}" font-size="12" fill="#5A5A5A" '
+    f'transform="rotate(-90 {espinha+9} {usr_y+240})">generalização de atores</text>'
 )
 
-# associações
+# ---- associações ator x caso de uso
 for aid, ucid in ASSOC:
     pts = rota_associacao(aid, ucid)
     d = " ".join(f"{'M' if i == 0 else 'L'} {x:.0f} {y:.0f}" for i, (x, y) in enumerate(pts))
-    svg.append(f'<path d="{d}" fill="none" stroke="#334155" stroke-width="1.3"/>')
+    svg.append(f'<path d="{d}" fill="none" stroke="{TRACO}" stroke-width="1"/>')
 
-# «include» / «extend»
+# ---- relacionamentos <<include>> e <<extend>>
 for orig, dest, tipo in REL:
     ox, oy, _ = UC[orig]
     dx_, dy_, _ = UC[dest]
     x1, y1 = borda_elipse(ox, oy, dx_, dy_)
     x2, y2 = borda_elipse(dx_, dy_, ox, oy)
-    cor = "#1d4ed8" if tipo == "include" else "#b45309"
     svg.append(
-        f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="{cor}" '
-        f'stroke-width="1.5" stroke-dasharray="7 5" marker-end="url(#seta)"/>'
+        f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="{TRACEJADO}" '
+        f'stroke-width="1.2" stroke-dasharray="6 5" marker-end="url(#seta)"/>'
     )
     mx, my = (x1 + x2) / 2, (y1 + y2) / 2
-    if abs(x2 - x1) < abs(y2 - y1):          # linha vertical: rótulo ao lado
-        mx += 58
-    else:                                     # linha horizontal: rótulo acima
-        my -= 11
-    texto = "«include»" if tipo == "include" else "«extend»"
-    larg = 76 if tipo == "include" else 72
+    if abs(x2 - x1) < abs(y2 - y1):
+        mx += 60
+    else:
+        my -= 10
+    texto = "&lt;&lt;include&gt;&gt;" if tipo == "include" else "&lt;&lt;extend&gt;&gt;"
+    larg = 82 if tipo == "include" else 78
     svg.append(
         f'<g transform="translate({mx:.0f},{my:.0f})">'
-        f'<rect x="{-larg/2}" y="-11" width="{larg}" height="19" rx="4" fill="#ffffff"/>'
-        f'<text x="0" y="4" text-anchor="middle" font-size="13" font-weight="600" '
-        f'fill="{cor}">{texto}</text></g>'
+        f'<rect x="{-larg/2}" y="-11" width="{larg}" height="18" fill="#ffffff"/>'
+        f'<text x="0" y="3" text-anchor="middle" font-size="13" fill="{TRACO}">{texto}</text></g>'
     )
 
-# casos de uso
+# ---- casos de uso
 for ucid, (cx, cy, linhas) in UC.items():
     svg.append(
-        f'<ellipse cx="{cx}" cy="{cy}" rx="{RX}" ry="{RY}" fill="#ffffff" '
-        f'stroke="#1e293b" stroke-width="1.6"/>'
+        f'<ellipse cx="{cx}" cy="{cy}" rx="{RX}" ry="{RY}" fill="{AMARELO}" '
+        f'stroke="{TRACO}" stroke-width="1.1"/>'
     )
     y0 = cy - (len(linhas) - 1) * 8
     for i, linha in enumerate(linhas):
         svg.append(
-            f'<text x="{cx}" y="{y0 + i*16 + 5}" text-anchor="middle" font-size="13.5" '
-            f'fill="#0f172a">{linha}</text>'
+            f'<text x="{cx}" y="{y0 + i*16 + 5}" text-anchor="middle" font-size="13" '
+            f'fill="{TRACO}">{linha}</text>'
         )
 
-# atores
+# ---- atores
 for aid, (ax, ay, linhas, lado) in ATORES.items():
-    svg.append('<g stroke="#1e293b" stroke-width="2" fill="none">')
-    svg.append(f'<circle cx="{ax}" cy="{ay-42}" r="13" fill="#e0e7ff"/>')
+    svg.append(f'<g stroke="{TRACO}" stroke-width="1.6" fill="none">')
+    svg.append(f'<circle cx="{ax}" cy="{ay-42}" r="13" fill="#ffffff"/>')
     svg.append(f'<line x1="{ax}" y1="{ay-29}" x2="{ax}" y2="{ay+6}"/>')
     svg.append(f'<line x1="{ax-24}" y1="{ay-14}" x2="{ax+24}" y2="{ay-14}"/>')
     svg.append(f'<line x1="{ax}" y1="{ay+6}" x2="{ax-20}" y2="{ay+38}"/>')
@@ -246,17 +264,17 @@ for aid, (ax, ay, linhas, lado) in ATORES.items():
     svg.append("</g>")
     for i, linha in enumerate(linhas):
         svg.append(
-            f'<text x="{ax}" y="{ay+58 + i*17}" text-anchor="middle" font-size="14.5" '
-            f'font-weight="600" fill="#0f172a">{linha}</text>'
+            f'<text x="{ax}" y="{ay+58 + i*17}" text-anchor="middle" font-size="13.5" '
+            f'fill="{TRACO}">{linha}</text>'
         )
 
-# legenda
-lx, ly = 330, 1130
-svg.append(f'<rect x="{lx}" y="{ly}" width="345" height="72" rx="8" fill="#ffffff" stroke="#cbd5e1"/>')
-svg.append(f'<line x1="{lx+18}" y1="{ly+24}" x2="{lx+70}" y2="{ly+24}" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="7 5" marker-end="url(#seta)"/>')
-svg.append(f'<text x="{lx+82}" y="{ly+28}" font-size="13.5" fill="#0f172a">«include» - execução obrigatória</text>')
-svg.append(f'<line x1="{lx+18}" y1="{ly+52}" x2="{lx+70}" y2="{ly+52}" stroke="#b45309" stroke-width="1.5" stroke-dasharray="7 5" marker-end="url(#seta)"/>')
-svg.append(f'<text x="{lx+82}" y="{ly+56}" font-size="13.5" fill="#0f172a">«extend» - execução condicional</text>')
+# ---- legenda
+lx, ly = BX0 + 30, BY1 - 105
+svg.append(f'<rect x="{lx}" y="{ly}" width="360" height="76" fill="#ffffff" stroke="{TRACO}" stroke-width="1"/>')
+svg.append(f'<line x1="{lx+18}" y1="{ly+26}" x2="{lx+78}" y2="{ly+26}" stroke="{TRACEJADO}" stroke-width="1.2" stroke-dasharray="6 5" marker-end="url(#seta)"/>')
+svg.append(f'<text x="{lx+92}" y="{ly+30}" font-size="13" fill="{TRACO}">&lt;&lt;include&gt;&gt; - sempre acontece</text>')
+svg.append(f'<line x1="{lx+18}" y1="{ly+56}" x2="{lx+78}" y2="{ly+56}" stroke="{TRACEJADO}" stroke-width="1.2" stroke-dasharray="6 5" marker-end="url(#seta)"/>')
+svg.append(f'<text x="{lx+92}" y="{ly+60}" font-size="13" fill="{TRACO}">&lt;&lt;extend&gt;&gt; - acontece sob condição</text>')
 svg.append("</svg>")
 
 destino = os.path.normpath(

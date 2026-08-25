@@ -1,5 +1,6 @@
 /**
- * Gera o documento acadêmico (.docx) do estudo de caso da distribuidora Entrega Expressa.
+ * Gera o documento acadêmico (.docx) do estudo de caso da distribuidora Entrega Expressa,
+ * formatado segundo as normas ABNT (NBR 14724, NBR 6024, NBR 6027, NBR 6023 e NBR 6028).
  *
  * Uso:  npm install docx && node gerar_documento_docx.cjs
  * Saída: ../Entrega-Expressa-Estudo-de-Caso.docx
@@ -9,37 +10,69 @@ const path = require("path");
 const {
   Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, PageBreak,
   Table, TableRow, TableCell, WidthType, ShadingType, ImageRun, TableOfContents,
-  PageOrientation, Footer, PageNumber, BorderStyle, VerticalAlign,
+  PageOrientation, Header, PageNumber, BorderStyle, VerticalAlign,
 } = require("docx");
 
 const BASE = path.join(__dirname, "..");
 const IMG = (n) => fs.readFileSync(path.join(BASE, "img", n));
 const CM = 566.93;                 // 1 cm em DXA
 const PX = 37.795;                 // 1 cm em pixels (96 dpi)
-const LARGURA_TEXTO = 16 * CM;     // A4 retrato com margens ABNT (3/2/3/2 cm)
+const LARGURA_TEXTO = 16 * CM;     // A4 com margens ABNT (3 cm esq., 2 cm dir.)
+const RECUO = 1.25 * CM;           // recuo de primeira linha (ABNT)
+const AUTORES = ["GABRIEL VINICIUS", "PEDRO ÁVILA"];
+const INSTITUICAO = "UNIVERSIDADE DE MOGI DAS CRUZES";
+const CURSO = "SISTEMAS DE INFORMAÇÃO";
+const DISCIPLINA = "Engenharia de Software";
+const ORIENTACAO = "Prof.ª Vanessa e Prof.ª Elisabete";
+const CIDADE = "MOGI DAS CRUZES - SP";
+const ANO = "2026";
 
 /* ------------------------------------------------------------------ helpers */
+/** Parágrafo de texto corrido: Arial 12, justificado, entrelinhas 1,5, recuo 1,25 cm. */
 const p = (texto, o = {}) =>
   new Paragraph({
     alignment: o.align || AlignmentType.JUSTIFIED,
-    spacing: { line: o.line || 360, after: o.after === undefined ? 120 : o.after },
-    indent: o.indent === false ? undefined : { firstLine: o.firstLine || 0 },
+    spacing: { line: o.line === undefined ? 360 : o.line, after: o.after === undefined ? 0 : o.after,
+               before: o.before || 0 },
+    indent: o.recuo === false ? undefined : { firstLine: RECUO },
     children: [new TextRun({ text: texto, bold: !!o.bold, italics: !!o.italics, size: o.size || 24 })],
   });
 
-const h1 = (texto) =>
+/** Seção primária: indicativo numérico + título em CAIXA ALTA e negrito (NBR 6024). */
+const secao = (texto) =>
   new Paragraph({
     heading: HeadingLevel.HEADING_1,
-    spacing: { before: 360, after: 240, line: 360 },
-    children: [new TextRun({ text: texto, bold: true, size: 26 })],
+    alignment: AlignmentType.LEFT,
+    spacing: { before: 0, after: 360, line: 360 },
+    children: [new TextRun({ text: texto, bold: true, size: 24, allCaps: true })],
   });
 
-const h2 = (texto) =>
+/** Seção secundária: indicativo + título apenas com inicial maiúscula, em negrito. */
+const subsecao = (texto) =>
   new Paragraph({
     heading: HeadingLevel.HEADING_2,
-    spacing: { before: 280, after: 160, line: 360 },
+    alignment: AlignmentType.LEFT,
+    spacing: { before: 360, after: 240, line: 360 },
     children: [new TextRun({ text: texto, bold: true, size: 24 })],
   });
+
+/** Título de elemento pré-textual/pós-textual, centralizado e sem indicativo numérico. */
+const tituloSemNumero = (texto) =>
+  new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 360, line: 360 },
+    children: [new TextRun({ text: texto, bold: true, size: 24, allCaps: true })],
+  });
+
+const centro = (texto, o = {}) =>
+  new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing: { line: o.line || 360, after: o.after === undefined ? 0 : o.after },
+    children: [new TextRun({ text: texto, bold: !!o.bold, size: o.size || 24 })],
+  });
+
+const vazio = (n = 1) => Array(n).fill(0).map(() => centro(""));
+const quebra = () => new Paragraph({ children: [new PageBreak()] });
 
 const celula = (texto, { bold = false, largura, fundo, align = AlignmentType.LEFT } = {}) =>
   new TableCell({
@@ -47,20 +80,18 @@ const celula = (texto, { bold = false, largura, fundo, align = AlignmentType.LEF
     shading: fundo ? { type: ShadingType.CLEAR, fill: fundo, color: "auto" } : undefined,
     verticalAlign: VerticalAlign.CENTER,
     margins: { top: 60, bottom: 60, left: 90, right: 90 },
-    children: [
-      new Paragraph({
-        alignment: align,
-        spacing: { line: 240, after: 0 },
-        children: [new TextRun({ text: texto, bold, size: 20 })],
-      }),
-    ],
+    children: [new Paragraph({
+      alignment: align,
+      spacing: { line: 240, after: 0 },
+      children: [new TextRun({ text: texto, bold, size: 20 })],
+    })],
   });
 
-function tabela(cabecalho, linhas, pesos) {
+function tabela(cabecalhoLinha, linhas, pesos) {
   const total = pesos.reduce((a, b) => a + b, 0);
   const larguras = pesos.map((w) => Math.round((w / total) * LARGURA_TEXTO));
   larguras[larguras.length - 1] = LARGURA_TEXTO - larguras.slice(0, -1).reduce((a, b) => a + b, 0);
-  const borda = { style: BorderStyle.SINGLE, size: 4, color: "8896A6" };
+  const borda = { style: BorderStyle.SINGLE, size: 4, color: "000000" };
   return new Table({
     columnWidths: larguras,
     width: { size: LARGURA_TEXTO, type: WidthType.DXA },
@@ -68,7 +99,7 @@ function tabela(cabecalho, linhas, pesos) {
     rows: [
       new TableRow({
         tableHeader: true,
-        children: cabecalho.map((t, i) => celula(t, { bold: true, largura: larguras[i], fundo: "DDE5F0" })),
+        children: cabecalhoLinha.map((t, i) => celula(t, { bold: true, largura: larguras[i], fundo: "E6E6E6" })),
       }),
       ...linhas.map((linha) =>
         new TableRow({ children: linha.map((t, i) => celula(String(t), { largura: larguras[i] })) })
@@ -77,6 +108,22 @@ function tabela(cabecalho, linhas, pesos) {
   });
 }
 
+/** Legenda da ilustração (acima) - "Quadro 1 - Título" / "Figura 1 - Título". */
+const legendaTopo = (texto) =>
+  new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing: { before: 240, after: 60, line: 240 },
+    children: [new TextRun({ text: texto, size: 20 })],
+  });
+
+/** Indicação da fonte (abaixo da ilustração), fonte 10 e espaçamento simples. */
+const fonteIlustracao = (texto = "Fonte: Elaborado pelos autores (2026).") =>
+  new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing: { before: 60, after: 240, line: 240 },
+    children: [new TextRun({ text: texto, size: 20 })],
+  });
+
 /** Imagem centralizada, ajustada à área útil informada (em cm). */
 function figura(arquivo, ratio, maxLargCm, maxAltCm) {
   let larg = maxLargCm;
@@ -84,7 +131,7 @@ function figura(arquivo, ratio, maxLargCm, maxAltCm) {
   if (alt > maxAltCm) { alt = maxAltCm; larg = alt * ratio; }
   return new Paragraph({
     alignment: AlignmentType.CENTER,
-    spacing: { before: 120, after: 120 },
+    spacing: { before: 0, after: 0 },
     children: [new ImageRun({
       type: "png",
       data: IMG(arquivo),
@@ -93,14 +140,13 @@ function figura(arquivo, ratio, maxLargCm, maxAltCm) {
   });
 }
 
-const legenda = (texto) =>
+/** Referência bibliográfica: espaçamento simples, alinhada à esquerda, separadas por linha em branco. */
+const referencia = (partes) =>
   new Paragraph({
-    alignment: AlignmentType.CENTER,
-    spacing: { after: 240 },
-    children: [new TextRun({ text: texto, size: 20, italics: true })],
+    alignment: AlignmentType.LEFT,
+    spacing: { after: 240, line: 240 },
+    children: partes.map((t) => new TextRun({ text: t.texto, bold: !!t.bold, italics: !!t.italico, size: 24 })),
   });
-
-const quebra = () => new Paragraph({ children: [new PageBreak()] });
 
 /* ------------------------------------------------------------------- dados */
 const REGRAS = [
@@ -164,7 +210,7 @@ const RNF = [
   ["RNF15", "Portabilidade", "Executar nos navegadores Chrome, Edge e Firefox em suas duas últimas versões, sem instalação local."],
 ];
 
-const ATORES = [
+const ATORES_UC = [
   ["Usuário do Sistema", "Ator generalizado", "Ator abstrato que representa todo usuário autenticado; concentra o caso de uso de login."],
   ["Plataforma de E-commerce", "Externo (sistema)", "Envia os pedidos de venda (Mercado Livre, Shopee, lojas parceiras)."],
   ["Cliente", "Primário", "Acompanha o status e o rastreamento do seu pedido."],
@@ -259,176 +305,278 @@ const RASTREABILIDADE = [
 const ATIVIDADES = [
   ["7.1 Processo de Login",
    "O fluxo inicia quando o usuário acessa a tela de login e informa suas credenciais. O sistema valida os dados; se forem inválidos, exibe a mensagem de erro e permite nova tentativa, bloqueando a conta e enviando o link de recuperação de senha na terceira tentativa consecutiva. Sendo válidas, o sistema verifica se o usuário está ativo, identifica o perfil de acesso, carrega o menu correspondente, registra o acesso no histórico de auditoria e exibe a tela inicial. Implementa UC01, UC02 e UC03 (RF24).",
-   "01-login.png", 0.744, "Figura 2 - Diagrama de Atividades: Processo de Login"],
+   "01-login.png", 0.744, "Figura 2 - Diagrama de atividades do processo de login"],
   ["7.2 Recebimento de Pedido",
    "A plataforma de e-commerce envia o pedido por API. O sistema valida os dados recebidos e, em caso de erro, registra a falha de integração e notifica o suporte. Pedidos duplicados são descartados com registro em log. Sendo o pedido válido e inédito, o sistema gera o número interno, grava o pedido com status Recebido, vincula cliente, itens e endereço, notifica automaticamente o setor de estoque, registra a movimentação no histórico e disponibiliza o pedido na fila de separação. Implementa UC05, UC06 e UC07 (RF01, RF02 e RF03).",
-   "02-recebimento-pedido.png", 0.517, "Figura 3 - Diagrama de Atividades: Recebimento de Pedido"],
+   "02-recebimento-pedido.png", 0.517, "Figura 3 - Diagrama de atividades do recebimento de pedido"],
   ["7.3 Separação de Produtos",
    "O funcionário do estoque seleciona o pedido na fila e consulta a disponibilidade dos produtos. Não havendo saldo suficiente, o pedido passa para o status Pendente, é gerado alerta de reposição para o setor de compras e a movimentação é registrada. Havendo saldo, os itens são reservados, a ordem de separação é emitida com os endereços de armazenagem e os produtos são separados e conferidos por leitor de código de barras. Divergências são registradas e, quando não resolvidas, devolvem o pedido à condição de pendente. Concluída a conferência, o sistema dá baixa no estoque, altera o status para Separado, registra o histórico e encaminha o pedido para a embalagem. Implementa UC08, UC10, UC11, UC12 e UC14 (RF04, RF05, RF07, RF08 e RF09).",
-   "03-separacao-produtos.png", 0.296, "Figura 4 - Diagrama de Atividades: Separação de Produtos"],
+   "03-separacao-produtos.png", 0.296, "Figura 4 - Diagrama de atividades da separação de produtos"],
   ["7.4 Embalagem e Expedição",
    "Recebido o pedido separado, o operador confere os itens, seleciona a embalagem adequada, embala os produtos, pesa e mede os volumes e registra essas informações no sistema, que altera o status para Embalado. Em seguida a transportadora é definida conforme região, peso e prazo, a etiqueta de transporte é gerada com o código de rastreio e impressa; falhas de impressão levam à reemissão. Os volumes são agrupados por transportadora em romaneio, a carga é entregue e a coleta confirmada, o status passa a Enviado, o cliente é notificado com o código de rastreio e a movimentação é registrada. Implementa UC15, UC16, UC17, UC18 e UC20 (RF10, RF11, RF12, RF13 e RF15).",
-   "04-embalagem-expedicao.png", 0.24, "Figura 5 - Diagrama de Atividades: Embalagem e Expedição"],
+   "04-embalagem-expedicao.png", 0.24, "Figura 5 - Diagrama de atividades da embalagem e expedição"],
   ["7.5 Atualização de Estoque",
    "Este fluxo é comum a todos os tipos de movimentação. Nas entradas, o sistema confere a nota fiscal e soma as quantidades ao saldo; nas saídas, valida o saldo reservado e bloqueia a operação quando não há disponibilidade; nos ajustes de inventário, exige justificativa e recalcula o saldo. Em qualquer caso a movimentação é gravada com usuário, data e hora, o saldo disponível é atualizado e, se o produto ficar abaixo do estoque mínimo, é gerado alerta de reposição. Por fim, os pedidos pendentes daquele produto são verificados e liberados para separação quando passam a ser atendíveis. Implementa UC12, UC13, UC24 e UC26 (RF06, RF09, RF17, RF18 e RF19).",
-   "05-atualizacao-estoque.png", 0.489, "Figura 6 - Diagrama de Atividades: Atualização de Estoque"],
+   "05-atualizacao-estoque.png", 0.489, "Figura 6 - Diagrama de atividades da atualização de estoque"],
   ["7.6 Consulta de Rastreamento pelo Cliente",
    "O cliente acessa a área de acompanhamento e informa o número do pedido junto com o CPF ou e-mail. Não localizado o pedido, o sistema exibe mensagem e permite nova tentativa. Localizado, consulta o status interno: pedidos ainda não despachados exibem a etapa atual do centro de distribuição; pedidos já despachados têm seus eventos consultados na API da transportadora, com exibição do último status conhecido quando a integração está indisponível. O sistema apresenta a linha do tempo com a previsão de entrega, permite cadastrar a preferência de notificação por e-mail e registra a consulta. Implementa UC19 e UC20 (RF14 e RF15).",
-   "06-rastreamento-cliente.png", 0.48, "Figura 7 - Diagrama de Atividades: Consulta de Rastreamento pelo Cliente"],
+   "06-rastreamento-cliente.png", 0.48, "Figura 7 - Diagrama de atividades da consulta de rastreamento pelo cliente"],
   ["7.7 Geração de Relatórios Gerenciais",
    "O gerente acessa o módulo de relatórios, tendo o perfil verificado — acessos não autorizados são recusados e registrados. Autorizado, seleciona o tipo de relatório e define os filtros de período, setor, produto e transportadora. O sistema critica os filtros, consulta a base e o histórico de movimentações e, havendo registros, consolida os indicadores e exibe o relatório em tela com tabelas e gráficos. O gerente pode exportar o resultado em PDF ou Excel, e a geração é registrada no histórico. Implementa UC27, UC28 e UC29 (RF17, RF22 e RF23).",
-   "07-relatorios-gerenciais.png", 0.474, "Figura 8 - Diagrama de Atividades: Geração de Relatórios Gerenciais"],
+   "07-relatorios-gerenciais.png", 0.474, "Figura 8 - Diagrama de atividades da geração de relatórios gerenciais"],
   ["7.8 Reposição de Estoque",
    "A partir do alerta de estoque mínimo ou de um pedido pendente, o comprador analisa a necessidade de compra. Aprovada a reposição, o pedido de compra é emitido ao fornecedor, que confirma o prazo e envia a mercadoria. No recebimento, a nota fiscal é conferida com os itens; havendo divergência, a ocorrência é registrada e comunicada ao fornecedor, podendo resultar em recebimento parcial ou devolução. Os produtos aceitos são endereçados no armazém, o saldo é atualizado, a movimentação é registrada e os pedidos pendentes daqueles produtos são verificados e liberados para separação. Implementa UC23, UC24, UC25 e UC26 (RF06, RF19, RF20 e RF21).",
-   "08-reposicao-estoque.png", 0.365, "Figura 9 - Diagrama de Atividades: Reposição de Estoque"],
+   "08-reposicao-estoque.png", 0.365, "Figura 9 - Diagrama de atividades da reposição de estoque"],
 ];
 
+
 /* --------------------------------------------------------------- documento */
-const margensRetrato = { top: 3 * CM, right: 2 * CM, bottom: 2 * CM, left: 3 * CM };
-const rodape = new Footer({
+const margens = { top: 3 * CM, right: 2 * CM, bottom: 2 * CM, left: 3 * CM };
+
+/** Paginação ABNT: algarismos arábicos no canto superior direito. */
+const cabecalhoPagina = new Header({
   children: [new Paragraph({
     alignment: AlignmentType.RIGHT,
+    spacing: { after: 0, line: 240 },
     children: [new TextRun({ children: [PageNumber.CURRENT], size: 20 })],
   })],
 });
 
-/* --- capa e folha de rosto --- */
+/* --- elementos pré-textuais: capa, folha de rosto, resumo e sumário --- */
 const preTextual = [
-  p("UMC - UNIVERSIDADE DE MOGI DAS CRUZES", { align: AlignmentType.CENTER, bold: true, after: 0 }),
-  ...Array(6).fill(0).map(() => p("", { after: 0 })),
-  p("[Nome do aluno]", { align: AlignmentType.CENTER, after: 0 }),
-  p("[Nome do aluno]", { align: AlignmentType.CENTER, after: 0 }),
-  ...Array(6).fill(0).map(() => p("", { after: 0 })),
-  p("ENTREGA EXPRESSA", { align: AlignmentType.CENTER, bold: true, size: 32, after: 0 }),
-  p("Sistema de Gestão de uma Distribuidora de E-commerce", { align: AlignmentType.CENTER, size: 26 }),
-  ...Array(9).fill(0).map(() => p("", { after: 0 })),
-  p("MOGI DAS CRUZES - SP", { align: AlignmentType.CENTER, after: 0 }),
-  p("2026", { align: AlignmentType.CENTER }),
+  centro(INSTITUICAO, { bold: true }),
+  centro("CURSO DE " + CURSO),
+  ...vazio(5),
+  ...AUTORES.map((a) => centro(a)),
+  ...vazio(6),
+  centro("ENTREGA EXPRESSA", { bold: true, size: 28 }),
+  centro("SISTEMA DE GESTÃO DE UMA DISTRIBUIDORA DE E-COMMERCE", { size: 24 }),
+  ...vazio(9),
+  centro(CIDADE),
+  centro(ANO),
   quebra(),
 
-  p("UMC - UNIVERSIDADE DE MOGI DAS CRUZES", { align: AlignmentType.CENTER, bold: true, after: 0 }),
-  ...Array(5).fill(0).map(() => p("", { after: 0 })),
-  p("[Nome do aluno]", { align: AlignmentType.CENTER, after: 0 }),
-  p("[Nome do aluno]", { align: AlignmentType.CENTER, after: 0 }),
-  ...Array(4).fill(0).map(() => p("", { after: 0 })),
-  p("ENTREGA EXPRESSA", { align: AlignmentType.CENTER, bold: true, size: 32, after: 0 }),
-  p("Sistema de Gestão de uma Distribuidora de E-commerce", { align: AlignmentType.CENTER, size: 26 }),
-  ...Array(3).fill(0).map(() => p("", { after: 0 })),
+  ...AUTORES.map((a) => centro(a)),
+  ...vazio(6),
+  centro("ENTREGA EXPRESSA", { bold: true, size: 28 }),
+  centro("SISTEMA DE GESTÃO DE UMA DISTRIBUIDORA DE E-COMMERCE", { size: 24 }),
+  ...vazio(4),
   new Paragraph({
     alignment: AlignmentType.JUSTIFIED,
     indent: { left: 8 * CM },
-    spacing: { line: 240, after: 120 },
+    spacing: { line: 240, after: 0 },
     children: [new TextRun({
-      size: 22,
-      text: "Trabalho apresentado à Universidade de Mogi das Cruzes como requisito para avaliação da disciplina de [Disciplina], do curso de Sistemas de Informação, sob orientação do(a) Prof.(a) [Nome do(a) professor(a)].",
+      size: 24,
+      text: "Trabalho acadêmico apresentado à " + "Universidade de Mogi das Cruzes como requisito parcial " +
+            "para avaliação da disciplina de " + DISCIPLINA + ", do curso de Sistemas de Informação, sob " +
+            "orientação de " + ORIENTACAO + ".",
     })],
   }),
-  ...Array(6).fill(0).map(() => p("", { after: 0 })),
-  p("MOGI DAS CRUZES - SP", { align: AlignmentType.CENTER, after: 0 }),
-  p("2026", { align: AlignmentType.CENTER }),
+  ...vazio(6),
+  centro(CIDADE),
+  centro(ANO),
   quebra(),
 
-  p("SUMÁRIO", { align: AlignmentType.CENTER, bold: true, size: 26 }),
+  tituloSemNumero("Resumo"),
+  new Paragraph({
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { line: 240, after: 240 },
+    children: [new TextRun({
+      size: 24,
+      text: "Este trabalho apresenta a análise e a modelagem de um sistema de informação para a gestão do " +
+            "centro de distribuição da empresa Entrega Expressa, distribuidora responsável pelo armazenamento e " +
+            "pela distribuição de produtos vendidos em plataformas de comércio eletrônico. O estudo parte da " +
+            "descrição do negócio, na qual grande parte dos processos é executada manualmente, situação que " +
+            "gera atrasos, erros na separação dos pedidos e dificuldades no controle de estoque. Como método, " +
+            "foi realizado o levantamento de requisitos funcionais e não funcionais, seguido da modelagem em " +
+            "Linguagem de Modelagem Unificada (UML), com a elaboração do diagrama de casos de uso, empregando " +
+            "os relacionamentos de inclusão e extensão, e de oito diagramas de atividades correspondentes aos " +
+            "processos essenciais da operação. Como resultado, obteve-se um conjunto de doze regras de negócio, " +
+            "vinte e cinco requisitos funcionais, quinze requisitos não funcionais, onze atores e vinte e nove " +
+            "casos de uso, articulados por uma matriz de rastreabilidade que relaciona cada requisito aos casos " +
+            "de uso e aos diagramas que o detalham. Conclui-se que a modelagem cobre integralmente o ciclo do " +
+            "pedido, do recebimento automático à confirmação da entrega, e trata de forma explícita as duas " +
+            "situações críticas relatadas pela empresa: a indisponibilidade de estoque e a ausência de " +
+            "rastreabilidade das movimentações.",
+    })],
+  }),
+  new Paragraph({
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { line: 240, after: 0 },
+    children: [
+      new TextRun({ text: "Palavras-chave: ", size: 24, bold: true }),
+      new TextRun({ text: "engenharia de software; UML; levantamento de requisitos; centro de distribuição; comércio eletrônico.", size: 24 }),
+    ],
+  }),
+  quebra(),
+
+  tituloSemNumero("Sumário"),
   new TableOfContents("Sumário", { hyperlink: true, headingStyleRange: "1-2" }),
 ];
 
 /* --- seções 1 a 6 (retrato) --- */
 const corpoA = [
-  h1("1. INTRODUÇÃO"),
-  p("A Entrega Expressa é uma distribuidora responsável pelo armazenamento e pela distribuição de produtos vendidos em plataformas de comércio eletrônico como Mercado Livre, Shopee e lojas virtuais parceiras. Atualmente boa parte da operação é conduzida manualmente: os pedidos chegam por planilhas e e-mails, a conferência de estoque depende da experiência dos funcionários e o acompanhamento do pedido é feito por telefone. O resultado são atrasos, erros na separação, rupturas de estoque percebidas tarde demais e retrabalho na expedição.", { firstLine: 708 }),
-  p("O presente trabalho apresenta a análise e a modelagem de um sistema integrado para gerenciar todas as operações do centro de distribuição, cobrindo o ciclo completo do pedido: recebimento automático a partir das plataformas de venda, verificação e reserva de estoque, separação, embalagem, expedição, transporte e confirmação da entrega, mantendo o histórico de todas as movimentações realizadas.", { firstLine: 708 }),
-  p("O documento está organizado da seguinte forma: as regras de negócio que orientam a solução; o levantamento dos requisitos funcionais e não funcionais; o diagrama de casos de uso em UML, com a identificação dos atores e o uso dos relacionamentos «include» e «extend»; e os diagramas de atividades dos oito processos essenciais do sistema. Encerra-se com a matriz de rastreabilidade entre requisitos, casos de uso e diagramas.", { firstLine: 708 }),
-  p("Os objetivos do sistema são eliminar o registro manual de pedidos, garantir um controle de saldo confiável com reserva de itens, padronizar a separação e a expedição, dar visibilidade do status do pedido ao cliente e à gerência e manter um histórico auditável das movimentações. Permanecem fora do escopo a emissão de nota fiscal, o faturamento e a gestão financeira, que continuam no ERP atual.", { firstLine: 708 }),
+  secao("1 INTRODUÇÃO"),
+  p("A Entrega Expressa é uma distribuidora responsável pelo armazenamento e pela distribuição de produtos vendidos em plataformas de comércio eletrônico, como Mercado Livre, Shopee e lojas virtuais parceiras. Atualmente, grande parte da operação é conduzida manualmente: os pedidos chegam por planilhas e mensagens de correio eletrônico, a conferência do estoque depende da experiência dos funcionários e o acompanhamento do pedido é feito por telefone. Esse cenário produz atrasos nas entregas, erros na separação dos produtos e dificuldades no controle de estoque."),
+  p("A engenharia de requisitos é a etapa do processo de desenvolvimento em que se estabelecem os serviços que o cliente requer de um sistema e as restrições sob as quais ele deve operar (SOMMERVILLE, 2019). A partir desse levantamento, a modelagem em Linguagem de Modelagem Unificada (UML) permite representar graficamente o comportamento esperado do software antes de sua construção, reduzindo ambiguidades entre os envolvidos (GUEDES, 2018)."),
+  p("O presente trabalho apresenta a análise e a modelagem de um sistema integrado para gerenciar as operações do centro de distribuição, cobrindo o ciclo completo do pedido: recebimento automático a partir das plataformas de venda, verificação e reserva de estoque, separação, embalagem, expedição, transporte e confirmação da entrega, mantendo o histórico de todas as movimentações realizadas."),
+  p("O documento está organizado da seguinte forma: a seção 2 apresenta as regras de negócio que orientam a solução; as seções 3 e 4 apresentam, respectivamente, os requisitos funcionais e não funcionais; a seção 5 identifica os atores; a seção 6 apresenta o diagrama de casos de uso, com o emprego dos relacionamentos «include» e «extend»; a seção 7 apresenta os oito diagramas de atividades; e a seção 8 apresenta a matriz de rastreabilidade entre requisitos, casos de uso e diagramas. A seção 9 traz as considerações finais."),
+  p("Os objetivos do sistema são eliminar o registro manual de pedidos, garantir controle de saldo confiável com reserva de itens, padronizar a separação e a expedição, dar visibilidade do status do pedido ao cliente e à gerência e manter histórico auditável das movimentações. Permanecem fora do escopo a emissão de nota fiscal, o faturamento e a gestão financeira, que continuam sob responsabilidade do sistema de gestão empresarial já utilizado."),
 
-  h1("2. REGRAS DE NEGÓCIO"),
-  p("As regras a seguir orientam o comportamento esperado do sistema e são referenciadas pelos requisitos e pelos diagramas apresentados nas seções seguintes."),
+  quebra(),
+  secao("2 REGRAS DE NEGÓCIO"),
+  p("As regras de negócio expressam as políticas e as restrições da organização que o sistema deve respeitar. As regras a seguir orientam o comportamento esperado do software e são referenciadas pelos requisitos e pelos diagramas apresentados nas seções seguintes."),
+  legendaTopo("Quadro 1 - Regras de negócio da distribuidora Entrega Expressa"),
   tabela(["Código", "Regra de negócio"], REGRAS, [1.3, 8.7]),
+  fonteIlustracao(),
 
   quebra(),
-  h1("3. REQUISITOS FUNCIONAIS"),
-  p("Os requisitos funcionais descrevem o que o sistema deve fazer para atender à operação do centro de distribuição."),
+  secao("3 REQUISITOS FUNCIONAIS"),
+  p("Os requisitos funcionais descrevem os serviços que o sistema deve oferecer, isto é, como ele deve reagir a entradas específicas e como deve se comportar em determinadas situações (SOMMERVILLE, 2019). O Quadro 2 relaciona os vinte e cinco requisitos funcionais levantados, com o ator principal responsável e a prioridade atribuída."),
+  legendaTopo("Quadro 2 - Requisitos funcionais do sistema"),
   tabela(["Código", "Requisito", "Descrição", "Ator principal", "Prioridade"], RF, [0.9, 2.3, 4.6, 2.0, 1.1]),
+  fonteIlustracao(),
 
   quebra(),
-  h1("4. REQUISITOS NÃO FUNCIONAIS"),
-  p("Os requisitos não funcionais estabelecem as restrições de qualidade, desempenho, segurança e operação do sistema."),
+  secao("4 REQUISITOS NÃO FUNCIONAIS"),
+  p("Os requisitos não funcionais expressam restrições sobre os serviços oferecidos e sobre o processo de desenvolvimento, aplicando-se ao sistema como um todo (SOMMERVILLE, 2019). O Quadro 3 apresenta os requisitos de qualidade, desempenho, segurança e operação estabelecidos para a solução."),
+  legendaTopo("Quadro 3 - Requisitos não funcionais do sistema"),
   tabela(["Código", "Categoria", "Requisito"], RNF, [1.0, 1.8, 7.2]),
+  fonteIlustracao(),
 
   quebra(),
-  h1("5. ATORES DO SISTEMA"),
-  p("Foram identificados onze atores, entre usuários internos do centro de distribuição, o cliente final e os sistemas externos que trocam informações com a solução."),
-  tabela(["Ator", "Tipo", "Responsabilidade no sistema"], ATORES, [2.6, 1.8, 5.6]),
+  secao("5 ATORES DO SISTEMA"),
+  p("Ator é o papel desempenhado por um usuário ou por outro sistema que interage com o software modelado, não correspondendo necessariamente a uma pessoa específica (GUEDES, 2018). Foram identificados onze atores, entre usuários internos do centro de distribuição, o cliente final e os sistemas externos que trocam informações com a solução, conforme o Quadro 4."),
+  legendaTopo("Quadro 4 - Atores identificados"),
+  tabela(["Ator", "Tipo", "Responsabilidade no sistema"], ATORES_UC, [2.6, 1.8, 5.6]),
+  fonteIlustracao(),
 
   quebra(),
-  h1("6. DIAGRAMA DE CASOS DE USO"),
-  p("O diagrama a seguir apresenta os onze atores e os vinte e nove casos de uso do sistema, delimitados pela fronteira do centro de distribuição. Os relacionamentos «include» (linhas azuis) indicam funcionalidades de execução obrigatória, reaproveitadas por vários casos de uso; os relacionamentos «extend» (linhas laranja) indicam comportamentos que só ocorrem sob determinada condição. Os perfis de usuário são especializações do ator Usuário do Sistema, o que permite associar o caso de uso de login uma única vez."),
+  secao("6 DIAGRAMA DE CASOS DE USO"),
+  p("O diagrama de casos de uso apresenta uma visão externa do sistema, descrevendo suas funcionalidades a partir da perspectiva dos usuários, sem detalhar como elas são implementadas (BOOCH; RUMBAUGH; JACOBSON, 2006). A Figura 1 apresenta os onze atores e os vinte e nove casos de uso do sistema, delimitados pela fronteira do centro de distribuição."),
+  p("O relacionamento «include» é utilizado quando um caso de uso precisa obrigatoriamente executar outro para concluir sua função, servindo para reaproveitar funcionalidades comuns e evitar repetições no diagrama. Já o relacionamento «extend» é utilizado quando uma funcionalidade complementa outra e ocorre apenas em situações específicas ou opcionais, isto é, quando a condição de extensão é satisfeita (FOWLER, 2005). No diagrama, ambos são representados por setas tracejadas, identificadas pelos respectivos estereótipos."),
 ];
 
 const paginaCasoDeUso = [
-  figura("00-casos-de-uso.png", 1.418, 24.0, 15.2),
-  legenda("Figura 1 - Diagrama de Casos de Uso do sistema da distribuidora Entrega Expressa"),
+  legendaTopo("Figura 1 - Diagrama de casos de uso do sistema da distribuidora Entrega Expressa"),
+  figura("00-casos-de-uso.png", 1.38, 24.0, 14.6),
+  fonteIlustracao(),
 ];
 
 const corpoB = [
-  h2("6.1 Descrição dos casos de uso"),
+  subsecao("6.1 Descrição dos casos de uso"),
+  p("O Quadro 5 relaciona cada caso de uso ao ator que o executa e aos requisitos funcionais que ele atende. Os casos de uso identificados como internos são acionados pelo próprio sistema, a partir de outro caso de uso."),
+  legendaTopo("Quadro 5 - Casos de uso e requisitos atendidos"),
   tabela(["Código", "Caso de uso", "Ator", "Requisitos"], CASOS, [1.0, 4.0, 3.3, 1.7]),
+  fonteIlustracao(),
 
   quebra(),
-  h2("6.2 Relacionamentos «include» - execução obrigatória"),
-  p("O relacionamento «include» é utilizado quando um caso de uso precisa obrigatoriamente executar outro para concluir sua função, evitando a repetição de funcionalidades comuns no diagrama."),
-  tabela(["Caso de uso base", "«include»", "Por que é obrigatório"], INCLUDES, [3.2, 3.0, 3.8]),
-
-  h2("6.3 Relacionamentos «extend» - execução condicional"),
-  p("O relacionamento «extend» é utilizado quando uma funcionalidade complementa outra e ocorre apenas em situações específicas, isto é, quando a condição de extensão é satisfeita."),
-  tabela(["Caso de uso estendido", "«extend»", "Condição"], EXTENDS, [3.2, 3.0, 3.8]),
-
-  h2("6.4 Generalização de atores"),
-  p("Cliente, Funcionário do Estoque, Operador de Separação, Operador de Expedição, Comprador, Gerente de Operações e Administrador do Sistema são especializações do ator Usuário do Sistema. Dessa forma, o caso de uso UC01 - Efetuar Login é associado uma única vez ao ator generalizado, em vez de ser repetido para cada perfil."),
+  subsecao("6.2 Relacionamentos «include»"),
+  p("O relacionamento de inclusão indica execução obrigatória: sempre que o caso de uso base é executado, o caso de uso incluído também é. O Quadro 6 apresenta as treze inclusões do modelo e a justificativa de cada uma."),
+  legendaTopo("Quadro 6 - Relacionamentos «include» do modelo"),
+  tabela(["Caso de uso base", "Caso de uso incluído", "Por que é obrigatório"], INCLUDES, [3.2, 3.0, 3.8]),
+  fonteIlustracao(),
 
   quebra(),
-  h1("7. DIAGRAMAS DE ATIVIDADES"),
-  p("Os diagramas desta seção utilizam a notação UML de atividades: nó inicial (círculo preenchido), ações (retângulos arredondados), nós de decisão (losangos) com as condições de guarda indicadas nos fluxos de saída e nó final (círculo com anel). São apresentados os oito processos essenciais do sistema."),
+  subsecao("6.3 Relacionamentos «extend»"),
+  p("O relacionamento de extensão indica execução condicional: o caso de uso estendido só é executado quando a condição indicada ocorre. O Quadro 7 apresenta as nove extensões do modelo e as respectivas condições."),
+  legendaTopo("Quadro 7 - Relacionamentos «extend» do modelo"),
+  tabela(["Caso de uso estendido", "Extensão", "Condição de extensão"], EXTENDS, [3.2, 3.0, 3.8]),
+  fonteIlustracao(),
+
+  subsecao("6.4 Generalização de atores"),
+  p("Cliente, Funcionário do Estoque, Operador de Separação, Operador de Expedição, Comprador, Gerente de Operações e Administrador do Sistema são especializações do ator Usuário do Sistema. Dessa forma, o caso de uso UC01 - Efetuar Login é associado uma única vez ao ator generalizado, em vez de ser repetido para cada perfil, o que simplifica o diagrama sem perda de informação."),
+
+  quebra(),
+  secao("7 DIAGRAMAS DE ATIVIDADES"),
+  p("O diagrama de atividades descreve o fluxo de controle de um processo, evidenciando a sequência das ações, as decisões tomadas e os caminhos alternativos (GUEDES, 2018). Os diagramas desta seção utilizam a notação da UML 2.5.1 (OMG, 2017): nó inicial representado por um círculo preenchido, ações representadas por retângulos arredondados, nós de decisão representados por losangos, com as condições de guarda indicadas nos fluxos de saída, e nó final representado por um círculo com anel. São apresentados os oito processos essenciais do sistema."),
 ];
 
-ATIVIDADES.forEach(([titulo, texto, arquivo, ratio, cap]) => {
-  corpoB.push(quebra(), h2(titulo), p(texto), figura(arquivo, ratio, 15.0, 19.5), legenda(cap));
+ATIVIDADES.forEach(([titulo, texto, arquivo, ratio, cap], i) => {
+  corpoB.push(quebra(), subsecao(titulo), p(texto), legendaTopo(cap), figura(arquivo, ratio, 15.0, 18.6), fonteIlustracao());
 });
 
 corpoB.push(
   quebra(),
-  h1("8. MATRIZ DE RASTREABILIDADE"),
-  p("A matriz relaciona cada requisito funcional aos casos de uso que o realizam e aos diagramas de atividades que detalham o seu fluxo, permitindo verificar a cobertura do levantamento."),
+  secao("8 MATRIZ DE RASTREABILIDADE"),
+  p("A rastreabilidade permite verificar se todo requisito levantado foi contemplado pelo modelo e localizar rapidamente onde cada funcionalidade é detalhada. O Quadro 8 relaciona cada requisito funcional aos casos de uso que o realizam e aos diagramas de atividades que descrevem o seu fluxo."),
+  legendaTopo("Quadro 8 - Matriz de rastreabilidade entre requisitos, casos de uso e diagramas"),
   tabela(["Requisitos", "Casos de uso", "Diagrama de atividades"], RASTREABILIDADE, [2.6, 3.2, 4.2]),
+  fonteIlustracao(),
 
-  h1("9. CONSIDERAÇÕES FINAIS"),
-  p("A modelagem apresentada cobre todo o ciclo operacional descrito pela Entrega Expressa, do recebimento automático do pedido até a confirmação da entrega pela transportadora, tratando explicitamente as duas situações críticas relatadas pela empresa: a falta de estoque, que passa a colocar o pedido em condição pendente com alerta de reposição e liberação automática posterior, e a ausência de rastreabilidade, resolvida pelo registro obrigatório de todas as movimentações.", { firstLine: 708 }),
-  p("Os relacionamentos «include» e «extend» foram empregados conforme sua finalidade: o primeiro para funcionalidades obrigatórias e reaproveitadas, como a validação de credenciais, a atualização de estoque e o registro no histórico; o segundo para comportamentos condicionais, como a marcação de pedido pendente, o registro de divergências e a exportação de relatórios.", { firstLine: 708 }),
-  p("Como evolução, recomenda-se a integração com o ERP para emissão de nota fiscal, a adoção de coletores móveis na separação e a construção de um painel de indicadores em tempo real para a gerência de operações.", { firstLine: 708 }),
+  quebra(),
+  secao("9 CONSIDERAÇÕES FINAIS"),
+  p("A modelagem apresentada cobre todo o ciclo operacional descrito pela Entrega Expressa, do recebimento automático do pedido enviado pelas plataformas de venda até a confirmação da entrega pela transportadora, tratando explicitamente as duas situações críticas relatadas pela empresa: a falta de estoque, que passa a colocar o pedido em condição pendente, com alerta de reposição e liberação automática posterior, e a ausência de rastreabilidade, resolvida pelo registro obrigatório de todas as movimentações."),
+  p("Os relacionamentos «include» e «extend» foram empregados conforme sua finalidade: o primeiro para funcionalidades obrigatórias e reaproveitadas, como a validação de credenciais, a atualização de estoque e o registro no histórico; o segundo para comportamentos condicionais, como a marcação de pedido pendente, o registro de divergências e a exportação de relatórios. A matriz de rastreabilidade demonstra que os vinte e cinco requisitos funcionais estão cobertos pelos casos de uso e detalhados pelos diagramas de atividades."),
+  p("Como evolução do trabalho, recomenda-se a integração com o sistema de gestão empresarial para emissão de nota fiscal, a adoção de coletores móveis na separação dos produtos e a construção de um painel de indicadores em tempo real para a gerência de operações. Recomenda-se, ainda, a elaboração dos diagramas de classes e de sequência, de modo a avançar da análise para o projeto do sistema."),
+
+  quebra(),
+  tituloSemNumero("Referências"),
+  referencia([
+    { texto: "BOOCH, Grady; RUMBAUGH, James; JACOBSON, Ivar. " },
+    { texto: "UML: guia do usuário", italico: true },
+    { texto: ". 2. ed. Rio de Janeiro: Elsevier, 2006." },
+  ]),
+  referencia([
+    { texto: "FOWLER, Martin. " },
+    { texto: "UML essencial: um breve guia para a linguagem-padrão de modelagem de objetos", italico: true },
+    { texto: ". 3. ed. Porto Alegre: Bookman, 2005." },
+  ]),
+  referencia([
+    { texto: "GUEDES, Gilleanes T. A. " },
+    { texto: "UML 2: uma abordagem prática", italico: true },
+    { texto: ". 3. ed. São Paulo: Novatec, 2018." },
+  ]),
+  referencia([
+    { texto: "OBJECT MANAGEMENT GROUP. " },
+    { texto: "OMG Unified Modeling Language (OMG UML): version 2.5.1", italico: true },
+    { texto: ". Needham: OMG, 2017. Disponível em: https://www.omg.org/spec/UML/2.5.1. Acesso em: 25 ago. 2026." },
+  ]),
+  referencia([
+    { texto: "PRESSMAN, Roger S.; MAXIM, Bruce R. " },
+    { texto: "Engenharia de software: uma abordagem profissional", italico: true },
+    { texto: ". 8. ed. Porto Alegre: AMGH, 2016." },
+  ]),
+  referencia([
+    { texto: "SOMMERVILLE, Ian. " },
+    { texto: "Engenharia de software", italico: true },
+    { texto: ". 10. ed. São Paulo: Pearson, 2019." },
+  ]),
 );
 
 const doc = new Document({
   styles: {
     default: {
       document: { run: { font: "Arial", size: 24, color: "000000" }, paragraph: { spacing: { line: 360 } } },
-      heading1: { run: { font: "Arial", size: 26, bold: true, color: "000000" } },
+      heading1: { run: { font: "Arial", size: 24, bold: true, color: "000000" } },
       heading2: { run: { font: "Arial", size: 24, bold: true, color: "000000" } },
     },
   },
   features: { updateFields: true },
   sections: [
-    { properties: { page: { margin: margensRetrato } }, children: preTextual },
-    { properties: { page: { margin: margensRetrato } }, footers: { default: rodape }, children: corpoA },
+    // elementos pré-textuais: contados, porém sem numeração impressa (NBR 14724)
+    { properties: { page: { margin: margens } }, children: preTextual },
+    // elementos textuais: numeração impressa a partir da introdução
+    {
+      properties: { page: { margin: margens, pageNumbers: { start: 5 } } },
+      headers: { default: cabecalhoPagina },
+      children: corpoA,
+    },
     {
       properties: {
         page: {
-          margin: { top: 2 * CM, right: 2 * CM, bottom: 2 * CM, left: 2 * CM },
+          margin: { top: 2 * CM, right: 2 * CM, bottom: 2 * CM, left: 3 * CM },
           size: { orientation: PageOrientation.LANDSCAPE },
         },
       },
-      footers: { default: rodape },
+      headers: { default: cabecalhoPagina },
       children: paginaCasoDeUso,
     },
-    { properties: { page: { margin: margensRetrato } }, footers: { default: rodape }, children: corpoB },
+    {
+      properties: { page: { margin: margens } },
+      headers: { default: cabecalhoPagina },
+      children: corpoB,
+    },
   ],
 });
 

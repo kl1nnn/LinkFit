@@ -7,9 +7,10 @@ e diagramas de atividades do sistema integrado do centro de distribuição da em
 |---|---|
 | **Documento** | Análise e modelagem do sistema |
 | **Empresa (estudo de caso)** | Entrega Expressa — distribuidora de e-commerce |
-| **Notação** | UML 2.x (casos de uso e atividades) |
+| **Autores** | Gabriel Vinicius · Pedro Ávila |
+| **Notação** | UML 2.5.1 (casos de uso e atividades) |
 | **Conteúdo** | 25 requisitos funcionais, 15 não funcionais, 11 atores, 29 casos de uso, 8 diagramas de atividades |
-| **Entrega** | [`Entrega-Expressa-Estudo-de-Caso.docx`](Entrega-Expressa-Estudo-de-Caso.docx) — documento acadêmico com capa, folha de rosto, sumário e todos os diagramas |
+| **Entrega** | [`Entrega-Expressa-Estudo-de-Caso.docx`](Entrega-Expressa-Estudo-de-Caso.docx) — documento nas normas ABNT (capa, folha de rosto, resumo, sumário, seções numeradas, quadros e figuras legendados e referências) |
 
 ---
 
@@ -148,6 +149,9 @@ permanecem no ERP atual e serão apenas consultados por integração futura.
 
 ![Diagrama de Casos de Uso](img/00-casos-de-uso.png)
 
+> Diagrama desenhado na notação UML padrão (fronteira do sistema, atores, elipses e estereótipos
+> `<<include>>` / `<<extend>>`).
+>
 > Arquivo vetorial: [`img/00-casos-de-uso.svg`](img/00-casos-de-uso.svg) · fonte: [`scripts/gerar_casos_de_uso.py`](scripts/gerar_casos_de_uso.py)
 > · versão alternativa em Mermaid: [`diagramas/00-casos-de-uso.mmd`](diagramas/00-casos-de-uso.mmd)
 
